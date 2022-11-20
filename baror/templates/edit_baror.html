@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="continer">
+    <div class="form-group">
+        <!-- <h3>Add round</h3> -->
+        <br /><br />
+        <h3 style="text-align:center;">Add round</h3>
+        <form class="form-control form-control-lg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="baror_round">Baror round:</label><br>
+            <input type="text" id="baror_round" name="baror_round"><br>
+            <!-- <label for="Price">Price:</label><br>
+            <input type="text" id="Price" name="price"><br> -->
+            <!-- <label for="Picture">Picture:</label><br>
+            <input type=file name="picture"><br><br> -->
+            <input class="btn btn-success" type="submit" value="Add">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
