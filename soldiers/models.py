@@ -4,8 +4,7 @@ from django.db import models
 class Soldier(models.Model):
    
     name = models.CharField(max_length=50)
-    # status = models.TextChoices(value=STATUS)
-
+    soldier_status = models.CharField(max_length=50 , default='Waiting for Baror')
 
     def __str__(self) -> str:
         return f'{self.name}'

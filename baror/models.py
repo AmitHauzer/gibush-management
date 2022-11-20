@@ -7,7 +7,7 @@ class BarOr(models.Model):
     baror_round = models.CharField(max_length=50 , unique=True)
     start_round_date = models.DateField(null=True, blank=True)
     soldiers = models.ManyToManyField(Soldier, through='BarorScore', through_fields=['baror_round','soldier'])
-    
+    baror_status = models.CharField(max_length=20 , default='Waiting for soldiers')
     
     def __str__(self) -> str:
         return f'{self.baror_round}'

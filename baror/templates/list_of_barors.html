@@ -9,8 +9,8 @@
         
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">name</th>
+                <th scope="col">Baror Status</th>
                 <th scope="col">soldiers in round</th>
                 <th scope="col"> </th>
             </tr>
@@ -18,9 +18,9 @@
         <tbody>
             {% for baror in barors %}
             <tr>
-                <th scope="row">{{ baror.id }}</th>
                 <td>{{ baror.baror_round }}</td>
-                <td>{{ baror.soldiers.all }}</td>
+                <td>{{ baror.baror_status }}</td>
+                <td>soldiers</td>
                 <td><a href="{% url 'barors:edit-baror' baror.id %}"><button class="btn btn-light">Edit</button></a></td>
                 
             </tr>

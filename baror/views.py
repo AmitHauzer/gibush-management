@@ -37,7 +37,45 @@ def add_baror_round(request):
 
 
 def edit_baror(request, pk):
-    return HttpResponse("edit baror")
+    print(pk)
+    baror = BarOr.objects.get(id=pk)
+    soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror')
+    return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
+
+
+
+def add_soldier_to_round(request, pk, soldier_id):
+    baror_id = request.GET.get('pk')
+    print(baror_id)
+    soldier_id = request.GET.get('soldier_id')
+    print( soldier_id)
+    soldier = Soldier.objects.get(id=soldier_id)
+    print(soldier.name)
+    print(pk)
+    baror = BarOr.objects.get(id=pk)
+    soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror')
+
+    return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # def delete_baror(request, pk):
@@ -53,6 +91,26 @@ def edit_baror(request, pk):
 #         messages.error(request, f'ERROR! {str(ex)}')
 
 #     return HttpResponse(f'delete baror')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #     # add a book

@@ -1,21 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="continer">
-    <div class="form-group">
-        <!-- <h3>Add round</h3> -->
-        <br /><br />
-        <h3 style="text-align:center;">Add round</h3>
-        <form class="form-control form-control-lg" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <label for="baror_round">Baror round:</label><br>
-            <input type="text" id="baror_round" name="baror_round"><br>
-            <!-- <label for="Price">Price:</label><br>
-            <input type="text" id="Price" name="price"><br> -->
-            <!-- <label for="Picture">Picture:</label><br>
-            <input type=file name="picture"><br><br> -->
-            <input class="btn btn-success" type="submit" value="Add">
-        </form>
-    </div>
-</div>
+<div class="container">
+    <table class="table table caption-top">
+     <caption style="text-align: center"><h3>{{ baror.baror_round }}</h3></caption>
+     <thead>
+        <tr>
+            <th scope="col">name</th>
+            <th scope="col">Soldier status</th>
+            <th scope="col"> </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for soldier in soldiers%}
+        
+        <tr>
+            <td>{{ soldier.name }}</td>
+            <td>{{ soldier.soldier_status }}</td>
+            
+            <td><form action="{% url 'barors:add-soldier-to-round' baror.id soldier.id %}" method="get">
+                {% csrf_token %}
+                <input type="text" hidden="True" id="pk" name="pk" value="{{baror.id}}">
+                <button class="btn btn-light" id="soldier_id" name='soldier_id' value="{{soldier.id}}">Add</button>
+            </form></td>
+            
+        </tr>
+        
+        {% endfor%}
+     </tbody>
+ </table>
+ </div>
 
 {% endblock %}
