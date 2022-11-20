@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- <h2 class="">List of soldiers</h2> -->
+ <div class="container">
+       <table class="table table-striped caption-top">
+        <caption style="text-align: center"><h3>List of soldiers</h3></caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for soldier in soldiers%}
+            <tr>
+                <th scope="row">{{ soldier.id }}</th>
+                <td><a href="{% url 'soldiers:single-soldier' soldier.id %}">{{ soldier.name }} </a></td>
+            </tr>
+
+            {% endfor%}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

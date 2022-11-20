@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- <h2 class="">List of soldiers</h2> -->
+ <div class="container">
+       <table class="table table caption-top">
+        <caption style="text-align: center"><h3>List of BarOrs</h3></caption>
+        
+        
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+                <th scope="col">soldiers in round</th>
+                <th scope="col"> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for baror in barors %}
+            <tr>
+                <th scope="row">{{ baror.id }}</th>
+                <td>{{ baror.baror_round }}</td>
+                <td>{{ baror.soldiers.all }}</td>
+                <td><a href="{% url 'barors:edit-baror' baror.id %}"><button class="btn btn-light">Edit</button></a></td>
+                
+            </tr>
+
+            {% endfor%}
+        </tbody>
+    </table>
+    <a href="{% url 'barors:add-baror' %}"><button class="btn btn-success">Add round</button></a>
+</div>
+{% endblock %}
