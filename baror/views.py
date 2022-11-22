@@ -61,18 +61,23 @@ def edit_baror(request, pk):
 
 
 def add_soldier_to_round(request):
+    # Get params
     baror_id = request.POST.get('pk')
-    print(f'baror ID: {baror_id}')
+    print(f'baror ID: {baror_id}')                          # not necessary
     soldier_id = request.POST.get('soldier_id')
-    print(f'soldier ID: {soldier_id}')
+    print(f'soldier ID: {soldier_id}')                      # not necessary
+    # Get Objects
     soldier = Soldier.objects.get(id=soldier_id)
-    print(soldier.name)
-    # print(pk)
-    baror = BarOr.objects.get(id=baror_id)
-    print(baror.baror_round)
-    soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror')
+    print(soldier.name)                                     # not necessary
+    baror = BarOr.objects.get(id=baror_id)                  
+    print(baror.baror_round)                                # not necessary
+    # Change objects' status
+    
+    # save 
+    # Add to BarorScore
 
-    # return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
+    # save
+    soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror') # not necessary
     return redirect('barors:edit-baror',pk=baror_id)
 
 

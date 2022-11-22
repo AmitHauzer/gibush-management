@@ -3,7 +3,7 @@
 <div class="container">
     <table class="table table caption-top">
         <caption style="text-align: center">
-            <h3>{{ baror.baror_round }}</h3>
+            <h3>Edit - {{ baror.baror_round }}</h3>
         </caption>
         <thead>
             <tr>
@@ -26,10 +26,10 @@
                         <input type="hidden" id="soldier_id" name="soldier_id" value="{{soldier.id}}">
                         <button class="btn btn-light">Add</button>
                     </form>
-<!-- להוריד את הפרמטרים מהנתיב ולהעביר בפוסט עם פרמטר מוסתר -->
-
+                </td>
             {% endfor%}
         </tbody>
+        <a href="{% url 'barors:all-barors' %}"><button class="btn">finish</button></a>
     </table>
 </div>
 
