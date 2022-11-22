@@ -7,5 +7,6 @@ urlpatterns = [
     path('createbaror/', views.create_baror, name='create-baror'),
     path('addround/', views.add_baror_round, name='add-baror'),
     path('<pk>/editround/', views.edit_baror, name='edit-baror'),
+    path('addsoldier/', views.add_soldier_to_round, name='add-soldier-to-round'),
 
 ]

@@ -37,7 +37,66 @@ def add_baror_round(request):
 
 
 def edit_baror(request, pk):
-    return HttpResponse("edit baror")
+    print(pk)
+    baror = BarOr.objects.get(id=pk)
+    soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror')
+    return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
+
+
+
+# def add_soldier_to_round(request, pk, soldier_id):
+#     # baror_id = request.GET.get('pk')
+#     print(f'baror ID: {pk}')
+#     # soldier_id = request.GET.get('soldier_id')
+#     print(f'soldier ID: {soldier_id}')
+#     soldier = Soldier.objects.get(id=soldier_id)
+#     print(soldier.name)
+#     # print(pk)
+#     baror = BarOr.objects.get(id=pk)
+#     print(baror.baror_round)
+#     soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror')
+
+#     return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
+
+
+
+def add_soldier_to_round(request):
+    # Get params
+    baror_id = request.POST.get('pk')
+    print(f'baror ID: {baror_id}')                          # not necessary
+    soldier_id = request.POST.get('soldier_id')
+    print(f'soldier ID: {soldier_id}')                      # not necessary
+    # Get Objects
+    soldier = Soldier.objects.get(id=soldier_id)
+    print(soldier.name)                                     # not necessary
+    baror = BarOr.objects.get(id=baror_id)                  
+    print(baror.baror_round)                                # not necessary
+    # Change objects' status
+    
+    # save 
+    # Add to BarorScore
+
+    # save
+    soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror') # not necessary
+    return redirect('barors:edit-baror',pk=baror_id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # def delete_baror(request, pk):
@@ -53,6 +112,26 @@ def edit_baror(request, pk):
 #         messages.error(request, f'ERROR! {str(ex)}')
 
 #     return HttpResponse(f'delete baror')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #     # add a book
