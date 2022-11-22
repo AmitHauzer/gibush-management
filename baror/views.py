@@ -44,20 +44,36 @@ def edit_baror(request, pk):
 
 
 
-def add_soldier_to_round(request, pk, soldier_id):
-    baror_id = request.GET.get('pk')
-    print(baror_id)
-    soldier_id = request.GET.get('soldier_id')
-    print( soldier_id)
+# def add_soldier_to_round(request, pk, soldier_id):
+#     # baror_id = request.GET.get('pk')
+#     print(f'baror ID: {pk}')
+#     # soldier_id = request.GET.get('soldier_id')
+#     print(f'soldier ID: {soldier_id}')
+#     soldier = Soldier.objects.get(id=soldier_id)
+#     print(soldier.name)
+#     # print(pk)
+#     baror = BarOr.objects.get(id=pk)
+#     print(baror.baror_round)
+#     soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror')
+
+#     return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
+
+
+
+def add_soldier_to_round(request):
+    baror_id = request.POST.get('pk')
+    print(f'baror ID: {baror_id}')
+    soldier_id = request.POST.get('soldier_id')
+    print(f'soldier ID: {soldier_id}')
     soldier = Soldier.objects.get(id=soldier_id)
     print(soldier.name)
-    print(pk)
-    baror = BarOr.objects.get(id=pk)
+    # print(pk)
+    baror = BarOr.objects.get(id=baror_id)
+    print(baror.baror_round)
     soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror')
 
-    return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
-
-
+    # return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
+    return redirect('barors:edit-baror',pk=baror_id)
 
 
 
