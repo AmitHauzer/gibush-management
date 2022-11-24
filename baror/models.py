@@ -4,10 +4,19 @@ from soldiers.models import Soldier
 
 # Create your models here.
 class BarOr(models.Model):
+    BAROR_SATUTS = {
+        'Waiting for allocate':'Waiting for allocate',
+        'Ready':'Ready',
+        'Running':'Running',
+        'Done':'Done', 
+    }
+
     baror_round = models.CharField(max_length=50 , unique=True)
     start_round_date = models.DateField(null=True, blank=True)
-    soldiers = models.ManyToManyField(Soldier, through='BarorScore', through_fields=['baror_round','soldier'])
-    baror_status = models.CharField(max_length=20 , default='Waiting for soldiers')
+    baror_status = models.CharField(max_length=20 , default=f'{BAROR_SATUTS["Waiting for allocate"]}')
+    
+    
+    
     
     def __str__(self) -> str:
         return f'{self.baror_round}'
@@ -16,7 +25,7 @@ class BarOr(models.Model):
 class BarorScore(models.Model):
     baror_round = models.ForeignKey(BarOr, on_delete=models.CASCADE)
     soldier = models.ForeignKey(Soldier, on_delete=models.CASCADE)
-    baror_score = models.DateField()
+    baror_score = models.TimeField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f'{self.baror_round} - {self.soldier} - {self.baror_score}'

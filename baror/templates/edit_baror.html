@@ -28,9 +28,12 @@
                     </form>
                 </td>
             {% endfor%}
-        </tbody>
-        <a href="{% url 'barors:all-barors' %}"><button class="btn">finish</button></a>
+        </tbody>   
     </table>
+    <div>
+        <a href="{% url 'barors:all-barors' %}"><button class="btn btn-outline-secondary">Back</button></a>
+        <a href="{% url 'barors:baror-is-ready' baror.id %}"><button class="btn btn-success">finish</button></a>
+    </div>
 </div>
 
 {% endblock %}
