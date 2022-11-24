@@ -8,12 +8,7 @@ from colorama import Fore
 
 def list_of_barors(request):
     barors = BarOr.objects.all()
-    try:
-        baror_scores= BarorScore.objects.all()
-        print(baror_scores)
-    except Exception as ex:
-        print(f'{Fore.RED}Error: baror_score is None.{Fore.RESET}')
-    return render(request, 'list_of_barors.html', {'barors':barors, 'baror_scores':baror_scores})
+    return render(request, 'list_of_barors.html', {'barors':barors})
 
 
 

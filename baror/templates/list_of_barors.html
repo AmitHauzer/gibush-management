@@ -38,7 +38,11 @@
                     {% endif %}
                     {% endwith %}
                 </td>
-                <td><a href="{% url 'barors:edit-baror' baror.id %}"><button class="btn btn-light">Edit</button></a>
+                <td>
+                    <a href="{% url 'barors:edit-baror' baror.id %}"><button class="btn btn-sm btn-light">Edit</button></a>
+                    {% if baror.baror_status == "Ready"%}
+                    <a href="{% url 'barors:edit-baror' baror.id %}"><button class="btn btn-sm btn-success">Start</button></a>
+                    {% endif %}
                 </td>
 
             </tr>
@@ -46,6 +50,6 @@
             {% endfor%}
         </tbody>
     </table>
-    <a href="{% url 'barors:add-baror' %}"><button class="btn btn-success">Add round</button></a>
+    <a href="{% url 'barors:add-baror' %}"><button class="btn btn-outline-success">Add round</button></a>
 </div>
 {% endblock %}
