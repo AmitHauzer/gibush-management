@@ -9,7 +9,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">name</th>
-                <th scope="col">Soldier status</th>
+                <th scope="col">Soldier Status</th>
                 <th scope="col"> </th>
             </tr>
         </thead>
@@ -17,9 +17,9 @@
             {% for soldier in soldiers%}
             <tr>
                 <th scope="row">{{ soldier.id }}</th>
-                <td><a href="{% url 'soldiers:single-soldier' soldier.id %}">{{ soldier.name }} </a></td>
+                <td>{{ soldier.name }}</td>
                 <td>{{ soldier.soldier_status }}</td>
-                <td><a href="{% url 'soldiers:add-soldier-to-round' soldier.id %}"><button class="btn btn-light">View</button></a></td>
+                <td><a href="{% url 'soldiers:single-soldier' soldier.id %}"><button class="btn btn-light">View</button></a></td>
             </tr>
 
             {% endfor%}
