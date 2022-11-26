@@ -39,9 +39,17 @@
                     {% endwith %}
                 </td>
                 <td>
+                    {% if baror.baror_status == "Waiting for allocate" %}
                     <a href="{% url 'barors:edit-baror' baror.id %}"><button class="btn btn-sm btn-light">Edit</button></a>
-                    {% if baror.baror_status == "Ready"%}
+                    {% elif baror.baror_status == "Ready"%}
+                    <a href="{% url 'barors:edit-baror' baror.id %}"><button class="btn btn-sm btn-light">Edit</button></a>
                     <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-success">Let's go!</button></a>
+                    {% elif baror.baror_status == "Running"%}
+                    <button class="btn btn-sm btn-light" disabled>Edit</button>
+                    <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-success">open</button></a>
+                    {% elif baror.baror_status == "Done"%}
+                    <button class="btn btn-sm btn-light" disabled>Edit</button>
+                    <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-success">open</button></a>
                     {% endif %}
                 </td>
 

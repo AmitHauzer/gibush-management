@@ -11,6 +11,7 @@ def list_of_barors(request):
     return render(request, 'list_of_barors.html', {'barors':barors})
 
 
+
 def add_baror(request):
     barors_counter = BarOr.objects.count()
     try:
@@ -21,6 +22,7 @@ def add_baror(request):
         messages.error(request, f'ERROR! {str(ex)}')
     finally:
         return redirect('barors:all-barors')
+
 
 
 def edit_baror(request, pk):
@@ -54,7 +56,7 @@ def add_soldier_to_round(request):
     print(soldier.name)                                     # not necessary
     baror = BarOr.objects.get(id=baror_id)                  
     print(baror.baror_round)                                # not necessary
-    # Change objects' status
+    # Update soldier's status
     soldier.soldier_status = Soldier.Soldier_SATUTS['Ready to run']
     soldier.save()
     # Add to BarorScore
@@ -76,19 +78,29 @@ def start_baror_page(request, pk):
     baror = BarOr.objects.get(id=pk)
     barorscores = BarorScore.objects.all().filter(baror_round=pk)
     if request.method == 'POST':
-        # add start date to DB
-        print(f"Baror start date: {baror.start_round_date}")
-
+        # add baror start date and update status
+        baror.start()
+        # update soldiers' status
+        for score in barorscores:
+            score.update_soldier_status_to_running()
     return render(request, 'baror_round.html', {'baror':baror, 'barorscores':barorscores})
 
 
-def manage_run_round(request,pk):
-    # Get data
-    baror = BarOr.objects.get(id=pk)
 
-    if baror.start_round_date is None:
-        # add start date to DB
-        print(f"soldier: {baror.start_round_date}")
+def manage_running_round(request,pk):
+    # Get data
+    # baror = BarOr.objects.get(id=pk)
+
+    # if baror.start_round_date is None:
+    #     # add start date to DB
+    #     print(f"soldier: {baror.start_round_date}")
+
+
+    # Get data
+    # ---
+    # add score+status
+    # ---
+     
     return redirect('barors:start-baror', pk=pk)
 
 
@@ -98,8 +110,9 @@ def baror_finish(request, pk):
     baror = BarOr.objects.get(id=pk)
     # Change status
     # baror.baror_status = BarOr.BAROR_SATUTS['Done']
+    # baror.stop_round_date = stop the clock...
     # baror.save()
-    # save
+    # # save
     print(f'{baror.baror_round} has been finished')
     return redirect('barors:all-barors')
 

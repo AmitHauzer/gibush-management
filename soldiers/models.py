@@ -6,7 +6,7 @@ class Soldier(models.Model):
         'Waiting for Baror':'Waiting for Baror',
         'Ready to run':'Ready to run',
         'Running':'Running',
-        'Done':'Done', 
+        'After Baror':'After Baror', 
     }
 
     name = models.CharField(max_length=50)
