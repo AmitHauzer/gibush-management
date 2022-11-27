@@ -49,7 +49,7 @@
                     <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-success">open</button></a>
                     {% elif baror.baror_status == "Done"%}
                     <button class="btn btn-sm btn-light" disabled>Edit</button>
-                    <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-info">View</button></a>
+                    <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-secondary">View</button></a>
                     {% endif %}
                 </td>
 

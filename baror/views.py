@@ -67,12 +67,6 @@ def add_soldier_to_round(request):
 
 
 
-
-
-
-
-
-
 def start_baror_page(request, pk):
     # Get baror
     baror = BarOr.objects.get(id=pk)
