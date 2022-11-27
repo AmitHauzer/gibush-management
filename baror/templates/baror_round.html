@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-1 g-4">
+    <div class="col">
+      <div class="card shadow-sm">
+        <div class="container">
+          <table class="table table caption-top">
+            <caption style="text-align: center">
+              <h1>ROUND: {{ baror.baror_round }}</h1>
+              {% if baror.start_round_date is None %}
+              <form action="{% url 'barors:start-baror' baror.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-success">Start</button>
+              </form>
+              {% else %}
+              <div>Start time: {{ baror.start_round_date }}</div>
+              
+              {% endif %}
+
+            <thead>
+              <tr>
+                <th scope="col">name</th>
+                <th scope="col">Baror Score</th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for score in barorscores %}
+
+              <tr>
+                <td>{{ score.soldier.name }}</td>
+                <td>{{ score.str_score }}</td>
+
+                <td>
+                  {% if baror.start_round_date is None %}
+
+                  {% elif score.str_score is None %}
+                  <form action="{% url 'barors:manage-soldier-in-round' baror.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" id="pk" name="pk" value="{{baror.id}}">
+                    <input type="hidden" id="soldier_id" name="soldier_id" value="{{score.soldier.id}}">
+                    <button class="btn btn-secondary">Done</button>
+                  </form>
+                  {% else %}
+                  <button class="btn btn-outline-secondary" disabled>Done</button>
+                  {% endif %}
+                </td>
+                {% endfor%}
+            </tbody>
+          </table>
+          <div>
+            {% if baror.start_round_date is None  %}
+            <a href="{% url 'barors:all-barors' %}"><button class="btn btn-outline-secondary">Back</button></a>
+            {% elif baror.start_round_date != None and baror.stop_round_date != None %}
+            <a href="{% url 'barors:all-barors' %}"><button class="btn btn-outline-secondary">Back</button></a>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+{% endblock %}
