@@ -51,11 +51,11 @@
             </tbody>
           </table>
           <div>
-            {% if baror.start_round_date is None %}
+            {% if baror.start_round_date is None  %}
+            <a href="{% url 'barors:all-barors' %}"><button class="btn btn-outline-secondary">Back</button></a>
+            {% elif baror.start_round_date != None and baror.stop_round_date != None %}
             <a href="{% url 'barors:all-barors' %}"><button class="btn btn-outline-secondary">Back</button></a>
             {% endif %}
-
-            <a href="{% url 'barors:finish-baror' baror.id %}"><button class="btn btn-success">Close Baror</button></a>
           </div>
 
         </div>

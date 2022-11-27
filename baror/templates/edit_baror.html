@@ -32,7 +32,9 @@
     </table>
     <div>
         <a href="{% url 'barors:all-barors' %}"><button class="btn btn-outline-secondary">Back</button></a>
+        {% if baror.barorscore_set.all %}
         <a href="{% url 'barors:baror-is-ready' baror.id %}"><button class="btn btn-success">finish</button></a>
+        {% endif%}
     </div>
 </div>
 
