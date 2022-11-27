@@ -79,7 +79,7 @@ def start_baror_page(request, pk):
     barorscores = BarorScore.objects.all().filter(baror_round=pk)
     if request.method == 'POST':
         # add baror start date and update status
-        baror.start()
+        baror.set_start_time()
         # update soldiers' status
         for score in barorscores:
             score.update_soldier_status_to_running()
@@ -89,11 +89,11 @@ def start_baror_page(request, pk):
 
 def manage_running_round(request,pk):
     # Get data
-    # baror = BarOr.objects.get(id=pk)
-
-    # if baror.start_round_date is None:
-    #     # add start date to DB
-    #     print(f"soldier: {baror.start_round_date}")
+    if request.method == 'POST':
+        # baror = BarOr.objects.get(id=pk)
+        soldier_id = request.POST.get('soldier_id')
+        barorscore = BarorScore.objects.get(baror_round=pk, soldier=soldier_id)
+        barorscore.update_score()
 
 
     # Get data
