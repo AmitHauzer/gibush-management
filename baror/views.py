@@ -90,32 +90,17 @@ def start_baror_page(request, pk):
 def manage_running_round(request,pk):
     # Get data
     if request.method == 'POST':
-        # baror = BarOr.objects.get(id=pk)
         soldier_id = request.POST.get('soldier_id')
         barorscore = BarorScore.objects.get(baror_round=pk, soldier=soldier_id)
         barorscore.update_score()
-
-
-    # Get data
-    # ---
-    # add score+status
-    # ---
-     
+        
+        # check if baror has been finished
+        barorscores = BarorScore.objects.all().filter(baror_round=pk, float_score=None)
+        if not barorscores:
+            baror = BarOr.objects.get(id=pk)
+            baror.set_stop_time()
+            return redirect('barors:all-barors')
     return redirect('barors:start-baror', pk=pk)
-
-
-
-def baror_finish(request, pk):
-    # Get baror
-    baror = BarOr.objects.get(id=pk)
-    # Change status
-    # baror.baror_status = BarOr.BAROR_SATUTS['Done']
-    # baror.stop_round_date = stop the clock...
-    # baror.save()
-    # # save
-    print(f'{baror.baror_round} has been finished')
-    return redirect('barors:all-barors')
-
 
 
 
@@ -164,6 +149,11 @@ def baror_finish(request, pk):
 #     return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
 
 
+# def baror_finish(request, pk):
+#     # Get baror
+#     baror = BarOr.objects.get(id=pk)
+#     baror.set_stop_time()
+#     return redirect('barors:all-barors')
 
 
 

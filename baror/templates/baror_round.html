@@ -12,7 +12,7 @@
               {% if baror.start_round_date is None %}
               <form action="{% url 'barors:start-baror' baror.id %}" method="post">
                 {% csrf_token %}
-                <button class="btn btn-success">Start!</button>
+                <button class="btn btn-success">Start</button>
               </form>
               {% else %}
               <div>Start time: {{ baror.start_round_date }}</div>
@@ -41,10 +41,10 @@
                     {% csrf_token %}
                     <input type="hidden" id="pk" name="pk" value="{{baror.id}}">
                     <input type="hidden" id="soldier_id" name="soldier_id" value="{{score.soldier.id}}">
-                    <button class="btn btn-secendery">Done</button>
+                    <button class="btn btn-secondary">Done</button>
                   </form>
                   {% else %}
-                  <button class="btn btn-outline-secendery" disabled>Done</button>
+                  <button class="btn btn-outline-secondary" disabled>Done</button>
                   {% endif %}
                 </td>
                 {% endfor%}
@@ -55,7 +55,7 @@
             <a href="{% url 'barors:all-barors' %}"><button class="btn btn-outline-secondary">Back</button></a>
             {% endif %}
 
-            <a href="{% url 'barors:finish-baror' baror.id %}"><button class="btn btn-success">finish</button></a>
+            <a href="{% url 'barors:finish-baror' baror.id %}"><button class="btn btn-success">Close Baror</button></a>
           </div>
 
         </div>

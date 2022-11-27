@@ -30,6 +30,7 @@ class BarOr(models.Model):
         self.baror_status = BarOr.BAROR_SATUTS['Done']
         self.save()
         print(self)
+        print(f'{self.baror_round} has been finished')
 
     
     def __str__(self) -> str:
