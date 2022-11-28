@@ -6,8 +6,13 @@ home:
 
 Soldier:
     - status
-    - add params
+    - add IDF_num
     - 
+
+Search:
+    - shalishut
+    - baror (soldier or baror)
+    - soldiers
 
 time:
     - utc -> Israel timezone
