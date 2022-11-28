@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'soldiers',
     'baror',
+    'shalishut',
 ]
 
 MIDDLEWARE = [
