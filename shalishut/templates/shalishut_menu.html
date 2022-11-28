@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
     <div class="container">
-        <h1 cla>Shalishut Menu</h1>
+        <h1 style="text-align: center">Shalishut Menu</h1>
         <div class="list-group">
             <a href="{% url 'shalishut:add-soldier-shalishut' %}"><button type="button"
                     class="list-group-item  list-group-item-action btn btn-light">Add soldier</button></a>
@@ -11,7 +11,7 @@
     </div>
     <div class="container">
         <table class="table  caption-top">
-            <caption style="text-align: center">
+            <caption style="text-align: left">
                 <h3>Waiting List - {{soldiers.count}}</h3>
             </caption>
             <thead>
