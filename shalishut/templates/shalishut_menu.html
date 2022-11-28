@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+<div class="container">
+    <h1 cla>Shalishut Menu</h1>
+    <div class="list-group">
+        <a href="{% url 'soldiers:all-soldiers' %}"><button type="button"
+                class="list-group-item  list-group-item-action btn btn-light">Add soldier</button></a>
+        <!-- <a href="{% url 'barors:all-barors' %}"><button type="button" class="list-group-item list-group-item-action"></button></a>
+                <a href=""><button type="button" class="list-group-item list-group-item-action">Shalishut</button></a>
+                <button type="button" class="list-group-item list-group-item-action">Clinic</button>
+                <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button> -->
+    </div>
+    <br>
+</div>
+<div class="container">
+    <table class="table  caption-top">
+        <caption style="text-align: center">
+            <h3>List of soldiers</h3>
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+                <th scope="col">Soldier Status</th>
+                <th scope="col"> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for soldier in soldiers%}
+            <tr>
+                <th scope="row">{{ soldier.id }}</th>
+                <td>{{ soldier.name }}</td>
+                <td>{{ soldier.soldier_status }}</td>
+                <td><a href="{% url 'soldiers:single-soldier' soldier.id %}"><button
+                            class="btn btn-light">View</button></a></td>
+            </tr>
+
+            {% endfor%}
+        </tbody>
+    </table>
+</div>
+</div>
+
+{% endblock %}
