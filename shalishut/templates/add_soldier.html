@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="continer">
+        <div class="form-group">
+
+            <br />
+            <h3 style="text-align:center;">Add soldier</h3>
+            <form action="{% url 'shalishut:add-soldier-shalishut' %}" class="form-control form-control-lg"
+                method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="soldier_name">Soldier Name:</label><br>
+                <input type="text" id="soldier_name" name="soldier_name"><br>
+                <label for="idf_num">Idf Number:</label><br>
+                <input type="text" id="idf_num" name="idf_num"><br>
+                <input class="btn btn-success" type="submit" value="Add">
+            </form>
+        </div>
+        <a href="{% url 'shalishut:menu-shalishut' %}"><button class="btn btn-outline-secondary">Back</button></a>
+</div>
+
+{% endblock %}
