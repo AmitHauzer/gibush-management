@@ -1,0 +1,27 @@
+User:
+    - login
+
+home:
+    - permissions
+
+Soldier:
+    - status
+    - add params
+    - 
+
+time:
+    - utc -> Israel timezone
+
+Baror:
+    - status
+    - user last update
+
+barorscore: 
+    - user last update
+
+Shalishut:
+    - create soldier
+
+Commander:
+    - dashboard
+    -  How many soldiers start Gibush
