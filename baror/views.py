@@ -70,7 +70,7 @@ def add_soldier_to_round(request):
 def start_baror_page(request, pk):
     # Get baror
     baror = BarOr.objects.get(id=pk)
-    barorscores = BarorScore.objects.all().filter(baror_round=pk)
+    barorscores = BarorScore.objects.all().filter(baror_round=pk).order_by('float_score')
     if request.method == 'POST':
         # add baror start date and update status
         baror.set_start_time()
