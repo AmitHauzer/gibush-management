@@ -14,14 +14,25 @@ time:
 
 Baror:
     - status
+    - menu
     - user last update
 
-barorscore: 
+Barorscore: 
     - user last update
 
 Shalishut:
     - create soldier
+    - update soldier in shalishut model
+    - change soldier status
+
+Clinic:
+    - model
+    - change soldier status
 
 Commander:
     - dashboard
-    -  How many soldiers start Gibush
+    - How many soldiers start Gibush
+    - add gibush model:
+        - like baror
+        - old true/false
+        - filter object true
