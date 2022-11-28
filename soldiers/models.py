@@ -4,10 +4,12 @@ from django.db import models
 class Soldier(models.Model):
     Soldier_SATUTS = {
         'Waiting for Shalishut':'Waiting for Shalishut',
+        'Waiting for Clinic':'Waiting for Clinic',
         'Waiting for Baror':'Waiting for Baror',
         'Ready to run':'Ready to run',
         'Running':'Running',
-        'After Baror':'After Baror', 
+        'After Baror':'After Baror',
+        'Active':'Active', 
     }
 
     name = models.CharField(max_length=50)
