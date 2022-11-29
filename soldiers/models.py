@@ -13,7 +13,9 @@ class Soldier(models.Model):
     }
 
     name = models.CharField(max_length=50)
+    idf_num = models.PositiveSmallIntegerField()
     soldier_status = models.CharField(max_length=50 , default=f'{Soldier_SATUTS["Waiting for Shalishut"]}')
+    
 
     def __str__(self) -> str:
-        return f'{self.name}'
+        return f'Name: {self.name}, IDF: {self.idf_num}, Soldier Status: {self.soldier_status}'

@@ -16,7 +16,7 @@
             </caption>
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">IDF Number</th>
                     <th scope="col">name</th>
                     <th scope="col">Soldier Status</th>
                     <th scope="col"> </th>
@@ -25,7 +25,7 @@
             <tbody>
                 {% for soldier in soldiers%}
                 <tr>
-                    <th scope="row">{{ soldier.id }}</th>
+                    <th scope="row">{{ soldier.idf_num }}</th>
                     <td>{{ soldier.name }}</td>
                     <td>{{ soldier.soldier_status }}</td>
                     <td><a href="{% url 'soldiers:single-soldier' soldier.id %}"><button
