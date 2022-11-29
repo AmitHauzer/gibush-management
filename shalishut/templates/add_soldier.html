@@ -9,9 +9,9 @@
                 method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label for="soldier_name">Soldier Name:</label><br>
-                <input type="text" id="soldier_name" name="soldier_name"><br>
+                <input type="text" id="soldier_name" name="soldier_name" required><br>
                 <label for="idf_num">Idf Number:</label><br>
-                <input type="text" id="idf_num" name="idf_num"><br>
+                <input type="number" id="idf_num" min="1" max="500" name="idf_num" required><br>
                 <input class="btn btn-success" type="submit" value="Add">
             </form>
         </div>

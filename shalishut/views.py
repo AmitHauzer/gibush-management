@@ -12,12 +12,19 @@ def add_soldier(request):
     if request.method == 'POST':
         idf_num = request.POST.get('idf_num')
         soldier_name = request.POST.get('soldier_name')
-        try:
-            soldier = Soldier(name=soldier_name)
-            soldier.save()
-            return redirect('shalishut:menu-shalishut')
-        except Exception as ex:
-            messages.error(request, f'ERROR! {str(ex)}')
+        error = False
+        already_exist = Soldier.objects.filter(idf_num=idf_num)
+        if already_exist:
+            messages.error(request, 'Gibush number already exist.')
+            error = True
+        if error is False:
+            try:
+                soldier = Soldier(name=soldier_name, idf_num=idf_num)
+                soldier.save()
+                messages.success(request, f'Soldier added successfully')
+                return redirect('shalishut:menu-shalishut')
+            except Exception as ex:
+                messages.error(request, f'ERROR! {str(ex)}')
     return render(request, 'add_soldier.html')
 
 
