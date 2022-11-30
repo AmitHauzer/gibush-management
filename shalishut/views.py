@@ -30,7 +30,9 @@ def add_soldier(request):
 
 
 def update_soldier(request, pk):
-    shalishut=[]
+    shalishut=Shalishut.objects.filter(soldier_id=pk)
+    
+    
     soldier = Soldier.objects.get(id=pk)
     if request.method == 'POST':
         identity_num = request.POST.get('identity_num')
@@ -42,6 +44,8 @@ def update_soldier(request, pk):
             shalishut.shalishut_status = Shalishut.ShalishutStatus.DONE
             shalishut.save()
             # update soldier status
+            soldier.soldier_status = soldier.SoldierStatus.WAITING_FOR_CLINIC
+            soldier.save()
             messages.success(request, f'Soldier updated successfully')
             return redirect('shalishut:menu-shalishut')
         except Exception as ex:

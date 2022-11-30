@@ -12,7 +12,7 @@ class Shalishut(models.Model):
         EIGHTY_TWO = 82, '82'
         SEVENTY_TWO = 72, '72'
         
-    soldier = models.ForeignKey(Soldier, max_length=50, on_delete=models.CASCADE)
+    soldier = models.OneToOneField(Soldier, max_length=50, on_delete=models.CASCADE)
     identity_num = models.CharField(max_length=9)
     soldier_name = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
