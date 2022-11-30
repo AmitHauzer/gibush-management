@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
+        <div style="margin: auto;" class="col">
+            <div class="card shadow-sm">
+
+                <h1 style="text-align:center;">Update Soldier</h1>
+                <form class="form-control form-control-lg" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" id="soldier_pk" name="soldier_pk" value="{{soldier.id}}">
+                    <label for="soldier_name">Soldier name:</label><br>
+                    <input type="text" id="soldier_name" name="soldier_name"><br>
+                    <label for="identity_num">Identity num:</label><br>
+                    <input type="text" id="identity_num" name="identity_num" maxlength="9"><br>
+                    <label for="city">City:</label><br>
+                    <input type="text" id="city" name="city"><br>
+                    <label for="cars">Profile:</label>
+                    <select id="profile" name="profile">
+                        {% for p in profiles %}
+                        <option value="{{p}}">{{p}}</option>
+                        {% endfor %}s
+                    </select><br>
+                    <!-- <label for="Picture">Picture:</label><br>
+                    <input type=file name="picture"><br><br> -->
+
+
+                    <input class="btn btn-success float-end" type="submit" value="Update">
+
+                </form>
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'shalishut:menu-shalishut' %}"><button type="button"
+                                    class="btn btn-sm btn-outline-secondary">Back</button></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
