@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from soldiers.models import Soldier
+from shalishut.models import Shalishut
 from django.contrib import messages
 
 # Create your views here.
@@ -28,10 +29,22 @@ def add_soldier(request):
     return render(request, 'add_soldier.html')
 
 
-# def update_soldier(request, pk):
-#     soldier = Soldier.objects.get(id=pk)
-#     if request.method == 'POST':
-#         # try update
-#         # change status 
-    
+def update_soldier(request, pk):
+    shalishut=[]
+    soldier = Soldier.objects.get(id=pk)
+    if request.method == 'POST':
+        identity_num = request.POST.get('identity_num')
+        soldier_name = request.POST.get('soldier_name')
+        city = request.POST.get('city')
+        profile = request.POST.get('profile')
+        try:
+            shalishut = Shalishut(soldier=soldier, identity_num=identity_num, soldier_name=soldier_name, city=city, profile=profile)
+            shalishut.shalishut_status = Shalishut.ShalishutStatus.DONE
+            shalishut.save()
+            # update soldier status
+            messages.success(request, f'Soldier updated successfully')
+            return redirect('shalishut:menu-shalishut')
+        except Exception as ex:
+                messages.error(request, f'ERROR! {str(ex)}')
+    return render(request, 'update_soldier.html',{'profiles':Shalishut.Profiletype, 'shalishut':shalishut})
      
