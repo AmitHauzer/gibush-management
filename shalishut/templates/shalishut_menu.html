@@ -12,7 +12,7 @@
     <div class="container">
         <table class="table  caption-top">
             <caption style="text-align: left">
-                <h3>Waiting List - {{soldiers.count}}</h3>
+                <h3>Waiting List - {{soldiers.before.count}}</h3>
             </caption>
             <thead>
                 <tr>
@@ -23,13 +23,47 @@
                 </tr>
             </thead>
             <tbody>
-                {% for soldier in soldiers%}
+                {% for soldier in soldiers.before %}
                 <tr>
                     <th scope="row">{{ soldier.idf_num }}</th>
                     <td>{{ soldier.name }}</td>
                     <td>{{ soldier.soldier_status }}</td>
                     <td><a href="{% url 'shalishut:update-soldier-shalishut' soldier.id %}"><button
                                 class="btn btn-light">Update</button></a></td>
+                </tr>
+
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="container">
+        <table class="table  caption-top">
+            <caption style="text-align: left">
+                <h3>After Shalishut - {{soldiers.after.count}}</h3>
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col">IDF Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col"> </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for soldier in soldiers.after %}
+                <tr>
+                    <th scope="row">{{ soldier.idf_num }}</th>
+                    <td>{{ soldier.shalishut.soldier_name }}</td>
+                    <td>{{ soldier.soldier_status }}</td>
+                    <td scope="col">{{ soldier.shalishut.identity_num }}</td>
+                    <td scope="col">{{ soldier.shalishut.city }}</td>
+                    <td scope="col">{{ soldier.shalishut.profile }}</td>
+                    <td><a href="{% url 'shalishut:update-soldier-shalishut' soldier.id %}"><button
+                                class="btn btn-light" disabled>Update(admin)</button></a></td>
                 </tr>
 
                 {% endfor%}
