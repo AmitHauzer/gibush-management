@@ -5,8 +5,9 @@ from django.contrib import messages
 
 # Create your views here.
 def menu(request):
-    soldiers = Soldier.objects.all().filter(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
-    return render(request, 'shalishut_menu.html',{'soldiers':soldiers})
+    soldiers_befor = Soldier.objects.filter(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
+    soldiers_after = Soldier.objects.exclude(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
+    return render(request, 'shalishut_menu.html',{'soldiers':{'before':soldiers_befor, 'after':soldiers_after}})
 
 
 def add_soldier(request):
