@@ -46,8 +46,7 @@ class BarorScore(models.Model):
     str_score = models.CharField(max_length=10, null=True, blank=True)
 
     def update_soldier_status_to_running(self):
-        # self.soldier.soldier_status = Soldier.Soldier_SATUTS['Running']
-        self.soldier.soldier_status = self.soldier.Soldier_SATUTS['Running']
+        self.soldier.soldier_status = self.soldier.SoldierStatus.RUNNING
         self.soldier.save()
         print(f'Soldier:{self.soldier.name} - Status: {self.soldier.soldier_status} ')
 
@@ -60,7 +59,7 @@ class BarorScore(models.Model):
         self.float_score = result
         self.str_score = datetime.fromtimestamp(result, tz=timezone.utc).strftime("%H:%M:%S:%f")[:-4]
         self.save()
-        self.soldier.soldier_status = Soldier.Soldier_SATUTS['After Baror']
+        self.soldier.soldier_status = self.soldier.SoldierStatus.AFTER_BAROR
         self.soldier.save()
         print(self)
 

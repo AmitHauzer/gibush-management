@@ -57,7 +57,7 @@ def add_soldier_to_round(request):
     baror = BarOr.objects.get(id=baror_id)                  
     print(baror.baror_round)                                # not necessary
     # Update soldier's status
-    soldier.soldier_status = Soldier.Soldier_SATUTS['Ready to run']
+    soldier.soldier_status = soldier.SoldierStatus.RUNNING
     soldier.save()
     # Add to BarorScore
     baror_score = BarorScore(baror_round=baror, soldier=soldier)

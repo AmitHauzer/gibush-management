@@ -13,15 +13,15 @@ class Soldier(models.Model):
         ACTIVE = 'Active','Active'
         QUIT = 'Quit','Quit'
         PASS = 'Pass','Pass'
-    Soldier_SATUTS = {
-        'Waiting for Shalishut':'Waiting for Shalishut',
-        'Waiting for Clinic':'Waiting for Clinic',
-        'Waiting for Baror':'Waiting for Baror',
-        'Ready to run':'Ready to run',
-        'Running':'Running',
-        'After Baror':'After Baror',
-        'Active':'Active', 
-    }
+    # Soldier_SATUTS = {
+    #     'Waiting for Shalishut':'Waiting for Shalishut',
+    #     'Waiting for Clinic':'Waiting for Clinic',
+    #     'Waiting for Baror':'Waiting for Baror',
+    #     'Ready to run':'Ready to run',
+    #     'Running':'Running',
+    #     'After Baror':'After Baror',
+    #     'Active':'Active', 
+    # }
 
     name = models.CharField(max_length=50)
     idf_num = models.PositiveSmallIntegerField()
