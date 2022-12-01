@@ -2,10 +2,10 @@
 {% block content %}
 <div class="container">
     <div class="container">
-        <h1 style="text-align: center">Shalishut Menu</h1>
+        <h1 style="text-align: center">Clinic Menu</h1>
         <div class="list-group">
-            <a href="{% url 'shalishut:add-soldier-shalishut' %}"><button type="button"
-                    class="list-group-item  list-group-item-action btn btn-light">Add soldier</button></a>
+            <a href="{% url 'clinic:menu-clinic' %}"><button type="button"
+                    class="list-group-item  list-group-item-action btn btn-light">Doctor Appointment</button></a>
         </div>
         <br>
     </div>
@@ -39,7 +39,7 @@
     <div class="container">
         <table class="table  caption-top">
             <caption style="text-align: left">
-                <h3>After Shalishut - {{soldiers.after.count}}</h3>
+                <h3>After Clinic - {{soldiers.after.count}}</h3>
             </caption>
             <thead>
                 <tr>
@@ -64,6 +64,7 @@
                     <td><a href="{% url 'shalishut:update-soldier-shalishut' soldier.id %}"><button
                                 class="btn btn-light" disabled>Update(admin)</button></a></td>
                 </tr>
+
                 {% endfor%}
             </tbody>
         </table>
