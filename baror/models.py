@@ -4,30 +4,28 @@ from soldiers.models import Soldier
 
 # Create your models here.
 class BarOr(models.Model):
-    BAROR_SATUTS = {
-        'Waiting for allocate':'Waiting for allocate',
-        'Ready':'Ready',
-        'Running':'Running',
-        'Done':'Done', 
-    }
+    class BarorStatus(models.TextChoices):
+        WAITING_FOR_ALLOCATE = 'Waiting for allocate','Waiting for allocate'
+        READY = 'Ready','Ready'
+        RUNNING = 'Running','Running'
+        DONE = 'Done','Done'
 
     baror_round = models.CharField(max_length=50 , unique=True)
     start_round_date = models.DateTimeField(null=True, blank=True)
     stop_round_date = models.DateTimeField(null=True, blank=True)
-    baror_status = models.CharField(max_length=20 , default=f'{BAROR_SATUTS["Waiting for allocate"]}')
+    baror_status = models.CharField(max_length=20 , default=BarorStatus.WAITING_FOR_ALLOCATE, choices=BarorStatus.choices)
     
     def set_start_time(self):
         # Adding start time and changing the status
         self.start_round_date = datetime.now(tz=timezone.utc)
-        # self.baror_status = BarOr.BAROR_SATUTS['Running']
-        self.baror_status = self.BAROR_SATUTS['Running']
+        self.baror_status = self.BarorStatus.RUNNING
         self.save()
         print(self)
 
     def set_stop_time(self):
         # Adding stop time and changing the status
         self.stop_round_date = datetime.now(tz=timezone.utc)
-        self.baror_status = BarOr.BAROR_SATUTS['Done']
+        self.baror_status = self.BarorStatus.DONE
         self.save()
         print(self)
         print(f'{self.baror_round} has been finished')

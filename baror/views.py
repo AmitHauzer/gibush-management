@@ -37,7 +37,7 @@ def baror_is_ready(request, pk):
     # Get baror
     baror = BarOr.objects.get(id=pk)
     # Change status
-    baror.baror_status = BarOr.BAROR_SATUTS['Ready']
+    baror.baror_status = baror.BarorStatus.READY
     baror.save()
     # save
     print(f'{baror.baror_round} is ready')
