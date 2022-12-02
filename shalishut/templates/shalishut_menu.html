@@ -4,11 +4,17 @@
     <div class="container">
         <h1 style="text-align: center">Shalishut Menu</h1>
         <div class="list-group">
+            <form class="d-flex" role="search" action="{% url 'shalishut:search-shalishut' %}">
+                <input name="search" class="form-control me-2" type="search" placeholder="search" aria-label="search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
             <a href="{% url 'shalishut:add-soldier-shalishut' %}"><button type="button"
                     class="list-group-item  list-group-item-action btn btn-light">Add soldier</button></a>
+
         </div>
         <br>
     </div>
+
     <div class="container">
         <table class="table  caption-top">
             <caption style="text-align: left">
