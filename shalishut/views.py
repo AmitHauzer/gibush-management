@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from soldiers.models import Soldier
 from shalishut.models import Shalishut
 from django.contrib import messages
+from django.db.models import Q
 
 # Create your views here.
 def menu(request):
@@ -32,8 +33,6 @@ def add_soldier(request):
 
 def update_soldier(request, pk):
     shalishut=Shalishut.objects.filter(soldier_id=pk)
-    
-    
     soldier = Soldier.objects.get(id=pk)
     if request.method == 'POST':
         identity_num = request.POST.get('identity_num')
@@ -52,4 +51,11 @@ def update_soldier(request, pk):
         except Exception as ex:
                 messages.error(request, f'ERROR! {str(ex)}')
     return render(request, 'update_soldier.html',{'profiles':Shalishut.Profiletype, 'shalishut':shalishut})
-     
+
+
+def search(request):
+    search_req = request.GET.get('search')
+    soldiers = Soldier.objects.filter(Q(shalishut__soldier_name__istartswith=search_req) | Q(idf_num__icontains=search_req))
+    soldiers_befor = soldiers.filter(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
+    soldiers_after = soldiers.exclude(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
+    return render(request, 'shalishut_menu.html',{'soldiers':{'before':soldiers_befor, 'after':soldiers_after}})

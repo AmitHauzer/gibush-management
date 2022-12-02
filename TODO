@@ -5,20 +5,20 @@ home:
     - permissions
 
 Soldier:
-    - status
-    - add IDF_num
+    - status                                    - DONE
+    - add IDF_num                               - DONE
     - 
 
 Search:
-    - shalishut
-    - baror (soldier or baror)
+    - shalishut                                 - DONE
+    - baror (soldier or baror)                  
     - soldiers
 
 time:
     - utc -> Israel timezone
 
 Baror:
-    - status
+    - status                                    - DONE
     - menu
     - user last update
 
@@ -26,9 +26,9 @@ Barorscore:
     - user last update
 
 Shalishut:
-    - create soldier
+    - create soldier (name only)
     - update soldier in shalishut model
-    - change soldier status
+    - change soldier status                     - DONE
 
 Clinic:
     - model
@@ -37,7 +37,8 @@ Clinic:
 Commander:
     - dashboard
     - How many soldiers start Gibush
-    - add gibush model:
-        - like baror
-        - old true/false
-        - filter object true
+
+add gibush model:
+    - like baror
+    - old true/false
+    - filter object true
