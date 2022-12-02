@@ -14,7 +14,6 @@ def menu(request):
 def add_soldier(request):
     if request.method == 'POST':
         idf_num = request.POST.get('idf_num')
-        soldier_name = request.POST.get('soldier_name')
         error = False
         already_exist = Soldier.objects.filter(idf_num=idf_num)
         if already_exist:
@@ -22,8 +21,10 @@ def add_soldier(request):
             error = True
         if error is False:
             try:
-                soldier = Soldier(name=soldier_name, idf_num=idf_num)
+                soldier = Soldier(idf_num=idf_num)
                 soldier.save()
+                shalishut = Shalishut(soldier=soldier, profile=0)
+                shalishut.save()
                 messages.success(request, f'Soldier added successfully')
                 return redirect('shalishut:menu-shalishut')
             except Exception as ex:
@@ -32,21 +33,20 @@ def add_soldier(request):
 
 
 def update_soldier(request, pk):
-    shalishut=Shalishut.objects.filter(soldier_id=pk)
-    soldier = Soldier.objects.get(id=pk)
+    shalishut=Shalishut.objects.get(soldier=pk)
+    # soldier = Soldier.objects.get(id=pk)
     if request.method == 'POST':
-        identity_num = request.POST.get('identity_num')
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        city = request.POST.get('city')
-        profile = request.POST.get('profile')
+        shalishut.identity_num = request.POST.get('identity_num')
+        shalishut.firstname = request.POST.get('first_name')
+        shalishut.lastname = request.POST.get('last_name')
+        shalishut.city = request.POST.get('city')
+        shalishut.profile = request.POST.get('profile')
         try:
-            shalishut = Shalishut(soldier=soldier, identity_num=identity_num, firstname=first_name, lastname=last_name, city=city, profile=profile)
             shalishut.shalishut_status = Shalishut.ShalishutStatus.DONE
             shalishut.save()
             # update soldier status
-            soldier.soldier_status = soldier.SoldierStatus.WAITING_FOR_CLINIC
-            soldier.save()
+            shalishut.soldier.soldier_status = shalishut.soldier.SoldierStatus.WAITING_FOR_CLINIC
+            shalishut.soldier.save()
             messages.success(request, f'Soldier updated successfully')
             return redirect('shalishut:menu-shalishut')
         except Exception as ex:
