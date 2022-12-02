@@ -62,7 +62,7 @@
                 {% for soldier in soldiers.after %}
                 <tr>
                     <th scope="row">{{ soldier.idf_num }}</th>
-                    <td>{{ soldier.shalishut.soldier_name }}</td>
+                    <td>{{ soldier.shalishut.firstname }} {{ soldier.shalishut.lastname }}</td>
                     <td>{{ soldier.soldier_status }}</td>
                     <td scope="col">{{ soldier.shalishut.identity_num }}</td>
                     <td scope="col">{{ soldier.shalishut.city }}</td>

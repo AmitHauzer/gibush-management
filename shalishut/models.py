@@ -14,7 +14,8 @@ class Shalishut(models.Model):
         
     soldier = models.OneToOneField(Soldier, max_length=50, on_delete=models.CASCADE)
     identity_num = models.CharField(max_length=9)
-    soldier_name = models.CharField(max_length=50)
+    firstname = models.CharField(max_length=20, default='firstname')
+    lastname = models.CharField(max_length=20, default='lastname')
     city = models.CharField(max_length=50)
     profile = models.IntegerField(choices=Profiletype.choices)
     # kaba =
@@ -24,4 +25,4 @@ class Shalishut(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return f' IDF: {self.soldier.idf_num}, Name: {self.soldier_name}, ID: {self.identity_num}, Soldier Status: {self.soldier.soldier_status}, City: {self.city}'
+        return f' IDF: {self.soldier.idf_num}, Name: {self.firsname} {self.lastname}, ID: {self.identity_num}, Soldier Status: {self.soldier.soldier_status}, City: {self.city}'
