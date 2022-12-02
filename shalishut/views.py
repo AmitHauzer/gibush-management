@@ -14,12 +14,10 @@ def menu(request):
 def add_soldier(request):
     if request.method == 'POST':
         idf_num = request.POST.get('idf_num')
-        error = False
         already_exist = Soldier.objects.filter(idf_num=idf_num)
         if already_exist:
             messages.error(request, 'Gibush number already exist.')
-            error = True
-        if error is False:
+        else:
             try:
                 soldier = Soldier(idf_num=idf_num)
                 soldier.save()
