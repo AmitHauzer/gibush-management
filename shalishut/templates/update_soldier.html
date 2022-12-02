@@ -10,8 +10,10 @@
                 <form class="form-control form-control-lg" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="hidden" id="soldier_pk" name="soldier_pk" value="{{soldier.id}}">
-                    <label for="soldier_name">Soldier name:</label><br>
-                    <input type="text" id="soldier_name" name="soldier_name"><br>
+                    <label for="first_name">First name:</label><br>
+                    <input type="text" id="first_name" name="first_name"><br>
+                    <label for="last_name">Last name:</label><br>
+                    <input type="text" id="last_name" name="last_name"><br>
                     <label for="identity_num">Identity num:</label><br>
                     <input type="text" id="identity_num" name="identity_num" maxlength="9"><br>
                     <label for="city">City:</label><br>

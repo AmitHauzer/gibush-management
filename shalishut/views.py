@@ -36,11 +36,12 @@ def update_soldier(request, pk):
     soldier = Soldier.objects.get(id=pk)
     if request.method == 'POST':
         identity_num = request.POST.get('identity_num')
-        soldier_name = request.POST.get('soldier_name')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
         city = request.POST.get('city')
         profile = request.POST.get('profile')
         try:
-            shalishut = Shalishut(soldier=soldier, identity_num=identity_num, soldier_name=soldier_name, city=city, profile=profile)
+            shalishut = Shalishut(soldier=soldier, identity_num=identity_num, firstname=first_name, lastname=last_name, city=city, profile=profile)
             shalishut.shalishut_status = Shalishut.ShalishutStatus.DONE
             shalishut.save()
             # update soldier status
@@ -55,7 +56,7 @@ def update_soldier(request, pk):
 
 def search(request):
     search_req = request.GET.get('search')
-    soldiers = Soldier.objects.filter(Q(shalishut__soldier_name__istartswith=search_req) | Q(idf_num__icontains=search_req))
+    soldiers = Soldier.objects.filter(Q(shalishut__firstname__istartswith=search_req) | Q(shalishut__lastname__istartswith=search_req) | Q(idf_num__icontains=search_req) | Q(shalishut__identity_num__istartswith=search_req))
     soldiers_befor = soldiers.filter(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
     soldiers_after = soldiers.exclude(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
     return render(request, 'shalishut_menu.html',{'soldiers':{'before':soldiers_befor, 'after':soldiers_after}})
