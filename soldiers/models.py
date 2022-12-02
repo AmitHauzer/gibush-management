@@ -13,19 +13,10 @@ class Soldier(models.Model):
         ACTIVE = 'Active','Active'
         QUIT = 'Quit','Quit'
         PASS = 'Pass','Pass'
-    # Soldier_SATUTS = {
-    #     'Waiting for Shalishut':'Waiting for Shalishut',
-    #     'Waiting for Clinic':'Waiting for Clinic',
-    #     'Waiting for Baror':'Waiting for Baror',
-    #     'Ready to run':'Ready to run',
-    #     'Running':'Running',
-    #     'After Baror':'After Baror',
-    #     'Active':'Active', 
-    # }
 
-    name = models.CharField(max_length=50)
+
     idf_num = models.PositiveSmallIntegerField()
     soldier_status = models.CharField(max_length=50 , default=SoldierStatus.WAITING_FOR_SHALISHUT, choices=SoldierStatus.choices)
 
     def __str__(self) -> str:
-        return f'Name: {self.name}, IDF: {self.idf_num}, Soldier Status: {self.soldier_status}'
+        return f'IDF: {self.idf_num} - Soldier Status: {self.soldier_status}'

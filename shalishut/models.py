@@ -13,11 +13,11 @@ class Shalishut(models.Model):
         SEVENTY_TWO = 72, '72'
         
     soldier = models.OneToOneField(Soldier, max_length=50, on_delete=models.CASCADE)
-    identity_num = models.CharField(max_length=9)
-    firstname = models.CharField(max_length=20, default='firstname')
-    lastname = models.CharField(max_length=20, default='lastname')
-    city = models.CharField(max_length=50)
-    profile = models.IntegerField(choices=Profiletype.choices)
+    identity_num = models.CharField(max_length=9, null=True)
+    firstname = models.CharField(max_length=20, null=True)
+    lastname = models.CharField(max_length=20, null=True)
+    city = models.CharField(max_length=50, null=True)
+    profile = models.IntegerField(choices=Profiletype.choices, null=True)
     # kaba =
     # image = 
     shalishut_status = models.CharField(max_length=50, default=ShalishutStatus.OPEN, choices=ShalishutStatus.choices, editable=False)
@@ -25,4 +25,4 @@ class Shalishut(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return f' IDF: {self.soldier.idf_num}, Name: {self.firsname} {self.lastname}, ID: {self.identity_num}, Soldier Status: {self.soldier.soldier_status}, City: {self.city}'
+        return f' IDF: {self.soldier.idf_num}, Name: {self.firstname} {self.lastname}, ID: {self.identity_num}, Soldier Status: {self.soldier.soldier_status}, City: {self.city}'
