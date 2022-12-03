@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 g-3">
+        <div style="margin: auto;" class="col">
+            <div class="card shadow-sm">
+
+                <h1 style="text-align:center;">Update Clinic</h1>
+                <table class="table  caption-top">
+                    <tbody>
+                        <tr>
+                            <th scope="row">IDF Number:</th>
+                            <td>{{soldier.idf_num}}</td>
+                        </tr>
+                        <tr>
+                            <th>First Name:</th>
+                            <td>{{soldier.shalishut.firstname}}</td>
+                        </tr>
+                        <tr>
+                            <th>Last Name:</th>
+                            <td>{{soldier.shalishut.lastname}}</td>
+                        </tr>
+                        <tr>
+                            <th>id:</th>
+                            <td>{{soldier.shalishut.identity_num}}</td>
+                        </tr>
+                        <tr>
+                            <th>Profile:</th>
+                            <td>{{soldier.shalishut.profile}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <form class="form-control form-control-lg" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="medial_condition">Medical Condition:</label>
+                    <select id="medial_condition" name="medial_condition" required>
+                        <option value="">-----</option>
+                        {% for s in status %}
+                        <option value="{{s}}">{{s}}</option>
+                        {% endfor %}s
+                    </select><br><br>
+                    <label for="health_declaration">Health Declaration:</label><br>
+                    <input type=file name="health_declaration" required><br><br>
+                    <label for="note">Note:</label><br>
+                    <textarea type="text" id="note" name="note" rows="4" cols="50"></textarea><br>
+                    <br>
+                    <input class="btn btn-success float-end" type="submit" value="Update">
+
+                </form>
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'clinic:menu-clinic' %}"><button type="button"
+                                    class="btn btn-sm btn-outline-secondary">Back</button></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

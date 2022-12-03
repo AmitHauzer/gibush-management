@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 <div class="container">
     <div class="container">
         <h1 style="text-align: center">Clinic Menu</h1>
         <div class="list-group">
+            <form class="d-flex" role="search" action="{% url 'clinic:search-clinic' %}">
+                <input name="search" class="form-control me-2" type="search" placeholder="search" aria-label="search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
             <a href="{% url 'clinic:menu-clinic' %}"><button type="button"
-                    class="list-group-item  list-group-item-action btn btn-light">Doctor Appointment</button></a>
+                    class="list-group-item  list-group-item-action btn btn-light">Appointment(doesn't work yet)</button></a>
+
         </div>
         <br>
     </div>
+
     <div class="container">
         <table class="table  caption-top">
             <caption style="text-align: left">
@@ -17,8 +24,10 @@
             <thead>
                 <tr>
                     <th scope="col">IDF Number</th>
-                    <!-- <th scope="col">Name</th> -->
+                    <th scope="col">Name</th>
                     <th scope="col">Soldier Status</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Profile</th>
                     <th scope="col"> </th>
                 </tr>
             </thead>
@@ -26,9 +35,12 @@
                 {% for soldier in soldiers.before %}
                 <tr>
                     <th scope="row">{{ soldier.idf_num }}</th>
-                    <!-- <td>{{ soldier.name }}</td> -->
+                    <td>{{ soldier.shalishut.firstname }} {{ soldier.shalishut.lastname }}</td>
                     <td>{{ soldier.soldier_status }}</td>
-                    <td><a href="{% url 'shalishut:update-soldier-shalishut' soldier.id %}"><button
+                    <td>{{soldier.shalishut.identity_num}}</td>
+                    <td>{{ soldier.shalishut.profile }}</td>
+
+                    <td><a href="{% url 'clinic:update-soldier-clinic' soldier.id %}"><button
                                 class="btn btn-light">Update</button></a></td>
                 </tr>
                 {% endfor%}
@@ -47,8 +59,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Status</th>
                     <th scope="col">ID</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Profile</th>
+                    <th scope="col">file</th>
                     <th scope="col"> </th>
                 </tr>
             </thead>
@@ -56,15 +67,13 @@
                 {% for soldier in soldiers.after %}
                 <tr>
                     <th scope="row">{{ soldier.idf_num }}</th>
-                    <td>{{ soldier.shalishut.soldier_name }}</td>
+                    <td>{{ soldier.shalishut.firstname }} {{ soldier.shalishut.lastname }}</td>
                     <td>{{ soldier.soldier_status }}</td>
                     <td scope="col">{{ soldier.shalishut.identity_num }}</td>
-                    <td scope="col">{{ soldier.shalishut.city }}</td>
-                    <td scope="col">{{ soldier.shalishut.profile }}</td>
+                    <td scope="col"><a href="{% static soldier.clinic.health_declaration %}"><img src="{% static 'icons/filetype-pdf.svg' %}" alt=""></a></td>
                     <td><a href="{% url 'shalishut:update-soldier-shalishut' soldier.id %}"><button
                                 class="btn btn-light" disabled>Update(admin)</button></a></td>
                 </tr>
-
                 {% endfor%}
             </tbody>
         </table>
