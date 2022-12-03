@@ -28,10 +28,14 @@ def update_soldier(request, pk):
         # TODO: add verification to the file
         note = request.POST.get('note')
         medial_condition = request.POST.get('medial_condition')
-        clinic = Clinic(soldier=soldier, health_declaration=file, clinic_status=medial_condition, note=note)
-        clinic.save()
-        # change soldier status
-        clinic.update_soldier_status()
-        return redirect('clinic:menu-clinic')
+        try:
+            clinic = Clinic(soldier=soldier, health_declaration=file, clinic_status=medial_condition, note=note)
+            clinic.save()
+            # change soldier status
+            clinic.update_soldier_status()
+            messages.success(request, f'Soldier updated successfully')
+            return redirect('clinic:menu-clinic')
+        except Exception as ex:
+            messages.error(request, f'ERROR! {str(ex)}')
 
     return render(request, 'update_clinic_soldier.html',{'status':Clinic.ClinicStatus, 'soldier':soldier})
