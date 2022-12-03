@@ -11,6 +11,7 @@ Soldier:
 
 Search:
     - shalishut                                 - DONE
+    - clinic                                    - DONE
     - baror (soldier or baror)                  
     - soldiers
 
@@ -31,8 +32,11 @@ Shalishut:
     - change soldier status                     - DONE
 
 Clinic:
-    - model
-    - change soldier status
+    - model                                     - DONE
+    - change soldier status                     - DONE
+    - file verification
+    - Open files
+    - appointment
 
 Commander:
     - dashboard
