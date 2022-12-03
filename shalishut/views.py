@@ -49,7 +49,7 @@ def update_soldier(request, pk):
             return redirect('shalishut:menu-shalishut')
         except Exception as ex:
                 messages.error(request, f'ERROR! {str(ex)}')
-    return render(request, 'update_soldier.html',{'profiles':Shalishut.Profiletype, 'shalishut':shalishut})
+    return render(request, 'update_shalishut_soldier.html',{'profiles':Shalishut.Profiletype, 'shalishut':shalishut})
 
 
 def search(request):
