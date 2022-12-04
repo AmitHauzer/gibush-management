@@ -27,6 +27,7 @@ urlpatterns = [
     path('barors/', include('baror.urls')),
     path('shalishut/', include('shalishut.urls')),
     path('clinic/', include('clinic.urls')),
+    path('commander/', include('commander.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
