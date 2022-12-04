@@ -24,5 +24,14 @@ class Shalishut(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
+
+    def update_soldier_status(self):
+        self.soldier.soldier_status = self.soldier.SoldierStatus.WAITING_FOR_CLINIC
+        self.soldier.save()
+        print(f'soldier status updated to: {self.soldier.soldier_status}.')
+
+
+
     def __str__(self) -> str:
         return f' IDF: {self.soldier.idf_num}, Name: {self.firstname} {self.lastname}, ID: {self.identity_num}, Soldier Status: {self.soldier.soldier_status}, City: {self.city}'
