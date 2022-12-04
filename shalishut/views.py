@@ -43,8 +43,7 @@ def update_soldier(request, pk):
             shalishut.shalishut_status = Shalishut.ShalishutStatus.DONE
             shalishut.save()
             # update soldier status
-            shalishut.soldier.soldier_status = shalishut.soldier.SoldierStatus.WAITING_FOR_CLINIC
-            shalishut.soldier.save()
+            shalishut.update_soldier_status()
             messages.success(request, f'Soldier updated successfully')
             return redirect('shalishut:menu-shalishut')
         except Exception as ex:
