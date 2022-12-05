@@ -46,7 +46,7 @@ class BarorScore(models.Model):
     def update_soldier_status_to_running(self):
         self.soldier.soldier_status = self.soldier.SoldierStatus.RUNNING
         self.soldier.save()
-        print(f'Soldier:{self.soldier.name} - Status: {self.soldier.soldier_status} ')
+        print(f'IDF number:{self.soldier.idf_num} - Status: {self.soldier.soldier_status} ')
 
     def update_score(self):
         # calculate time

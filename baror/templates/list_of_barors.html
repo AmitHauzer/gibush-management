@@ -11,7 +11,7 @@
 
         <thead>
             <tr>
-                <th scope="col">name</th>
+                <th scope="col">Round</th>
                 <th scope="col">Baror Status</th>
                 <th scope="col">Soldiers In Round</th>
                 <th scope="col"> </th>
@@ -27,7 +27,7 @@
                     
                     {% if barorscoers %}
                         {% for barorscore in barorscoers %}
-                        <span>{{barorscore.soldier.name}}</span>
+                        <span>{{barorscore.soldier.idf_num}}</span>
                             {% if forloop.last is False%}
                                 <span>,</span>
                             {% endif %}
