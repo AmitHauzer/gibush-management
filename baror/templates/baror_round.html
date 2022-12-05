@@ -21,7 +21,7 @@
 
             <thead>
               <tr>
-                <th scope="col">name</th>
+                <th scope="col">IDF Number</th>
                 <th scope="col">Baror Score</th>
                 <th scope="col"> </th>
               </tr>
@@ -30,7 +30,7 @@
               {% for score in barorscores %}
 
               <tr>
-                <td>{{ score.soldier.name }}</td>
+                <th>{{ score.soldier.idf_num }}</th>
                 <td>{{ score.str_score }}</td>
 
                 <td>

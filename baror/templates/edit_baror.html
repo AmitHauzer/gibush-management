@@ -7,7 +7,7 @@
         </caption>
         <thead>
             <tr>
-                <th scope="col">name</th>
+                <th scope="col">IDF Number</th>
                 <th scope="col">Soldier status</th>
                 <th scope="col"> </th>
             </tr>
@@ -16,7 +16,7 @@
             {% for soldier in soldiers%}
 
             <tr>
-                <td>{{ soldier.name }}</td>
+                <th>{{ soldier.idf_num }}</th>
                 <td>{{ soldier.soldier_status }}</td>
 
                 <td>

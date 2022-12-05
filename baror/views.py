@@ -48,20 +48,17 @@ def baror_is_ready(request, pk):
 def add_soldier_to_round(request):
     # Get params (POST)
     baror_id = request.POST.get('pk')
-    print(f'baror ID: {baror_id}')                          # not necessary
     soldier_id = request.POST.get('soldier_id')
-    print(f'soldier ID: {soldier_id}')                      # not necessary
+    print(f'Baror ID: {baror_id}')                          # not necessary
+    print(f'Soldier ID: {soldier_id}')                      # not necessary
     # Get Objects
     soldier = Soldier.objects.get(id=soldier_id)
-    print(soldier.name)                                     # not necessary
-    baror = BarOr.objects.get(id=baror_id)                  
-    print(baror.baror_round)                                # not necessary
-    # Update soldier's status
-    soldier.soldier_status = soldier.SoldierStatus.RUNNING
-    soldier.save()
+    baror = BarOr.objects.get(id=baror_id)
     # Add to BarorScore
     baror_score = BarorScore(baror_round=baror, soldier=soldier)
     baror_score.save()
+    # Update soldier's status
+    baror_score.update_soldier_status_to_running()
     print(f'Baror Score: {baror_score}')
     return redirect('barors:edit-baror',pk=baror_id)
 
@@ -117,61 +114,3 @@ def manage_running_round(request,pk):
 
 #     return HttpResponse(f'delete baror')
 
-
-# def create_baror(request):
-#     if request.method == 'POST':
-#         baror_round = request.POST.get('baror_round')
-#         new_baror = BarOr(baror_round=baror_round)
-#         new_baror.save()
-#         return redirect('baror:all-barors')
-#     return render(request, 'create_baror.html')
-
-
-
-# def add_soldier_to_round(request, pk, soldier_id):
-#     # baror_id = request.GET.get('pk')
-#     print(f'baror ID: {pk}')
-#     # soldier_id = request.GET.get('soldier_id')
-#     print(f'soldier ID: {soldier_id}')
-#     soldier = Soldier.objects.get(id=soldier_id)
-#     print(soldier.name)
-#     # print(pk)
-#     baror = BarOr.objects.get(id=pk)
-#     print(baror.baror_round)
-#     soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror')
-
-#     return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
-
-
-# def baror_finish(request, pk):
-#     # Get baror
-#     baror = BarOr.objects.get(id=pk)
-#     baror.set_stop_time()
-#     return redirect('barors:all-barors')
-
-
-
-
-
-
-
-
-
-
-
-
-
-#     # add a book
-# @admin_bp.route('/addbook', methods=['GET','POST'])
-# @login_required
-# @admin_login_required
-# def add_book():
-#         if request.method == 'POST':
-#             book = request.form.get('bookname')
-#             price = request.form.get('price')
-#             picture = request.files.get('picture')
-#             upload_file()
-#             print(f"{book},{price},{picture}")
-#             add_book_to_data(book=book, price=price, picture=picture.filename)
-#             return redirect('/admin/home')
-#         return render_template("admin/add_book_form.html")
