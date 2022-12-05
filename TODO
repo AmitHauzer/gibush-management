@@ -2,7 +2,6 @@ User:
     - login
     - change password
 
-
 home:
     - permissions
 
@@ -10,10 +9,6 @@ Soldier model:
     - status                                    - DONE
     - add IDF_num                               - DONE
     - add Gibush event
-
-
-
-
 
 Baror app:
     - status                                    - DONE
@@ -32,8 +27,8 @@ Shalishut app:
 Clinic:
     - model                                     - DONE
     - change soldier status                     - DONE
-    - file verification
     - Open files
+    - file verification    
     - appointment
 
 Commander:
@@ -57,5 +52,5 @@ time:
 add gibush model:
     - gibush event
     - like baror
-    - old true/false
+    - old true/false?
     - filter object true
