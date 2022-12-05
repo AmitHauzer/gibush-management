@@ -1,35 +1,33 @@
 User:
     - login
+    - change password
+
 
 home:
     - permissions
 
-Soldier:
+Soldier model:
     - status                                    - DONE
     - add IDF_num                               - DONE
-    - 
+    - add Gibush event
 
-Search:
-    - shalishut                                 - DONE
-    - clinic                                    - DONE
-    - baror (soldier or baror)                  
-    - soldiers
 
-time:
-    - utc -> Israel timezone
 
-Baror:
+
+
+Baror app:
     - status                                    - DONE
     - menu
     - user last update
 
-Barorscore: 
+Barorscore model: 
     - user last update
 
-Shalishut:
-    - create soldier (name only)
-    - update soldier in shalishut model
+Shalishut app:
+    - create soldier (name only)                - DONE
+    - update soldier in shalishut model         - DONE
     - change soldier status                     - DONE
+    - Add a image of a soldier
 
 Clinic:
     - model                                     - DONE
@@ -39,10 +37,25 @@ Clinic:
     - appointment
 
 Commander:
+    - init                                      - DONE
     - dashboard
-    - How many soldiers start Gibush
+    - add acceptance criteria page
+    - add user
+    - edit user permissions
+    - list of all users
+
+Search:
+    - shalishut                                 - DONE
+    - clinic                                    - DONE
+    - baror (soldier or baror)                  
+    - soldiers
+    - commander
+
+time:
+    - utc -> Israel timezone
 
 add gibush model:
+    - gibush event
     - like baror
     - old true/false
     - filter object true
