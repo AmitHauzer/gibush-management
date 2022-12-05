@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'baror',
     'shalishut',
     'clinic',
+    'commander',
 ]
 
 MIDDLEWARE = [
