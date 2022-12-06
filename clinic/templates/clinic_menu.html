@@ -10,7 +10,8 @@
                 <button class="btn btn-primary" type="submit">Search</button>
             </form>
             <a href="{% url 'clinic:menu-clinic' %}"><button type="button"
-                    class="list-group-item  list-group-item-action btn btn-light">Appointment(doesn't work yet)</button></a>
+                    class="list-group-item  list-group-item-action btn btn-light">Appointment(doesn't work
+                    yet)</button></a>
 
         </div>
         <br>
@@ -70,7 +71,15 @@
                     <td>{{ soldier.shalishut.firstname }} {{ soldier.shalishut.lastname }}</td>
                     <td>{{ soldier.soldier_status }}</td>
                     <td scope="col">{{ soldier.shalishut.identity_num }}</td>
-                    <td scope="col"><a href="{% static soldier.clinic.health_declaration %}"><img src="{% static 'icons/filetype-pdf.svg' %}" alt=""></a></td>
+                    {% if soldier.clinic.health_declaration %}
+                    <td scope="col"><a href="{% get_static_prefix %}soldiers_docs/{{soldier.clinic.health_declaration}}"
+                            target="_blank">
+                            <img src="{% static 'icons/filetype-pdf.svg' %}" alt="">
+                        </a></td>
+                    {% else %}
+                    <td scope="col"></td>
+                    {% endif %}
+
                     <td><a href="{% url 'shalishut:update-soldier-shalishut' soldier.id %}"><button
                                 class="btn btn-light" disabled>Update(admin)</button></a></td>
                 </tr>

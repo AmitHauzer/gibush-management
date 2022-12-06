@@ -24,10 +24,17 @@ def search(request):
 def update_soldier(request, pk):
     soldier = Soldier.objects.get(id=pk)
     if request.method == 'POST':
-        file = request.FILES.get('health_declaration')
-        # TODO: add verification to the file
-        note = request.POST.get('note')
         medial_condition = request.POST.get('medial_condition')
+        file = request.FILES.get('health_declaration')
+        if medial_condition == Clinic.ClinicStatus.FIT:
+            if file == None:
+                messages.error(request, f'File is required!')
+                return redirect('clinic:update-soldier-clinic', pk)
+            else:
+                # TODO: add verification to the file
+                pass
+        note = request.POST.get('note')
+        
         try:
             clinic = Clinic(soldier=soldier, health_declaration=file, clinic_status=medial_condition, note=note)
             clinic.save()
@@ -37,5 +44,4 @@ def update_soldier(request, pk):
             return redirect('clinic:menu-clinic')
         except Exception as ex:
             messages.error(request, f'ERROR! {str(ex)}')
-
     return render(request, 'update_clinic_soldier.html',{'status':Clinic.ClinicStatus, 'soldier':soldier})
