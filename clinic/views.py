@@ -44,5 +44,4 @@ def update_soldier(request, pk):
             return redirect('clinic:menu-clinic')
         except Exception as ex:
             messages.error(request, f'ERROR! {str(ex)}')
-
     return render(request, 'update_clinic_soldier.html',{'status':Clinic.ClinicStatus, 'soldier':soldier})
