@@ -58,7 +58,7 @@ def add_soldier_to_round(request):
     baror_score = BarorScore(baror_round=baror, soldier=soldier)
     baror_score.save()
     # Update soldier's status
-    baror_score.update_soldier_status_to_running()
+    baror_score.update_soldier_status_to_readey_to_running()
     print(f'Baror Score: {baror_score}')
     return redirect('barors:edit-baror',pk=baror_id)
 

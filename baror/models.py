@@ -43,6 +43,11 @@ class BarorScore(models.Model):
     float_score = models.FloatField(max_length=200, null=True, blank=True)
     str_score = models.CharField(max_length=10, null=True, blank=True)
 
+    def update_soldier_status_to_readey_to_running(self):
+        self.soldier.soldier_status = self.soldier.SoldierStatus.READY_TO_RUN
+        self.soldier.save()
+        print(f'IDF number:{self.soldier.idf_num} - Status: {self.soldier.soldier_status} ')
+
     def update_soldier_status_to_running(self):
         self.soldier.soldier_status = self.soldier.SoldierStatus.RUNNING
         self.soldier.save()
