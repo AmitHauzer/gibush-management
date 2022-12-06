@@ -12,9 +12,6 @@ Soldier model:
     - add Gibush event
 
 
-
-
-
 Baror app:
     - status                                    - DONE
     - menu
@@ -32,8 +29,8 @@ Shalishut app:
 Clinic:
     - model                                     - DONE
     - change soldier status                     - DONE
+    - Open files                                - DONE
     - file verification
-    - Open files
     - appointment
 
 Commander:
