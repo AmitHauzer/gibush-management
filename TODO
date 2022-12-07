@@ -2,7 +2,6 @@ User:
     - login
     - change password
 
-
 home:
     - permissions
 
@@ -10,7 +9,6 @@ Soldier model:
     - status                                    - DONE
     - add IDF_num                               - DONE
     - add Gibush event
-
 
 Baror app:
     - status                                    - DONE
@@ -24,7 +22,7 @@ Shalishut app:
     - create soldier (name only)                - DONE
     - update soldier in shalishut model         - DONE
     - change soldier status                     - DONE
-    - Add a image of a soldier
+    - Add an image of a soldier
 
 Clinic:
     - model                                     - DONE
@@ -35,8 +33,8 @@ Clinic:
 
 Commander:
     - init                                      - DONE
-    - dashboard
-    - add acceptance criteria page
+    - chart                                     - DONE
+    - add acceptance criteria page              - DONE
     - add user
     - edit user permissions
     - list of all users
@@ -45,8 +43,6 @@ Search:
     - shalishut                                 - DONE
     - clinic                                    - DONE
     - baror (soldier or baror)                  
-    - soldiers
-    - commander
 
 time:
     - utc -> Israel timezone

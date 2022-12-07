@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
+        <div style="margin: auto;" class="col">
+            <br>
+            <div class="card shadow-sm">
+                <h2 style="text-align:center;">Acceptance Criteria</h2>
+
+                {% include 'charts/chart_acceptance_criteria.html' %}
+
+                <form class="form-control form-control-lg" method="post">
+                    {% csrf_token %}
+                    <label class="fw-bold" for="limit">Select a number:</label><br>
+                    <input type="number" id="limit" name="limit" min="1" max="{{all_baror_score.count}}"><br>
+                    <span class="fw-bold text-secondary" style="font-size:16px">Note:</span><br>
+                    <span class="fst-italic fw-light text-secondary" style="font-size:16px">To reset, press "Set" when the value is empty.</span>
+                    <br><br>
+                    <input class="btn btn-success float-end" type="submit" value="Set">
+                </form>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'commander:menu-commander' %}"><button type="button"
+                                    class="btn btn-sm btn-outline-secondary">Back</button></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

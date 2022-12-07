@@ -4,18 +4,18 @@
     <div class="container">
         <h1 style="text-align: center">Commander Menu</h1>
         <div class="list-group">
-            <form class="d-flex" role="search" action="{% url 'commander:menu-commander' %}">
+            <!-- <form class="d-flex" role="search" action="{% url 'commander:menu-commander' %}">
                 <input name="search" class="form-control me-2" type="search" placeholder="search" aria-label="search">
                 <button class="btn btn-primary" type="submit">Search</button>
-            </form>
-            <a href="{% url 'commander:menu-commander' %}"><button type="button"
+            </form> -->
+            <a href="{% url 'commander:acceptance-criteria-commander' %}"><button type="button"
                     class="list-group-item  list-group-item-action btn btn-light">Set the acceptance criteria</button></a>
 
         </div>
         <br>
     </div>
     <br>
-{% include 'charts.html' %}
+{% include 'charts/charts_menu.html' %}
     <div class="container">
         {% for key,value in status.items %}
         <table class="table  caption-top">
