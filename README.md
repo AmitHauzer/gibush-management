@@ -40,7 +40,7 @@
 -	**Chart & Tables.**
     - This page shows all the statuses and where the soldiers are now.
 -	**Acceptance criteria.**
-    - Select a number  Set.
+    - Select a number ---> Set.
 
 ## Models:
 - **Soldier**
