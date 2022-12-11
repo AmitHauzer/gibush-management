@@ -26,7 +26,7 @@
 ## Clinic:
 -	**Update:**
     - Unfit ---> File not required ---> The soldier stops the process, the status changes to ‘Medically disqualified'.
-    -	Unfit ---> File not required ---> Continue, the status changes to 'Waiting for Baror'.
+    - Fit ---> File not required ---> Continue, the status changes to 'Waiting for Baror'.
     - You can open the PDF.
 ## Baror:
 -	**Add a round.**
