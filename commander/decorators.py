@@ -65,10 +65,15 @@ def allowed_users(allowed_roles=[]):
         @login_required
         def wrapper_func(request,*args,**kwargs):
             
-            group = None
+            groups = []
             if request.user.groups.exists():
-                group = request.user.groups.all()[0].name
-            if group in allowed_roles:
+                for group in request.user.groups.all():
+                    groups.append(group.name)
+                # print("User's groups: ",groups)
+                # print("Allowed role:  ",allowed_roles)
+                # result = any(group in allowed_roles for group in groups)
+                # print("Allowed?       ",result)
+            if any(group in allowed_roles for group in groups):
                 return view_func(request,*args,**kwargs)
             else:
                 messages.error(request, "You are not allowed.")

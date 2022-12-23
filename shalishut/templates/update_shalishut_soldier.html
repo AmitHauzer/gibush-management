@@ -11,16 +11,15 @@
                     {% csrf_token %}
                     <input type="hidden" id="soldier_pk" name="soldier_pk" value="{{soldier.id}}">
                     <label for="first_name">First name:</label><br>
-                    <input type="text" id="first_name" name="first_name" value="{{shalishut.firstname}}" required><br>
+                    <input type="text" id="first_name" name="first_name" required><br>
                     <label for="last_name">Last name:</label><br>
-                    <input type="text" id="last_name" name="last_name" value="{{shalishut.lastname}}" required><br>
+                    <input type="text" id="last_name" name="last_name" required><br>
                     <label for="identity_num">Identity num:</label><br>
-                    <input type="text" id="identity_num" name="identity_num" minlength="9" maxlength="9" value="{{shalishut.identity_num}}" required><br>
+                    <input type="text" id="identity_num" name="identity_num" minlength="9" maxlength="9" required><br>
                     <label for="city">City:</label><br>
-                    <input type="text" id="city" name="city" value="{{shalishut.city}}" required><br>
+                    <input type="text" id="city" name="city" required><br>
                     <label for="profile">Profile:</label>
                     <select id="profile" name="profile" required>
-                        <option value="{{shalishut.profile}}">{{shalishut.profile}}</option>
                         <option value="">----</option>
                         {% for p in profiles %}
                         <option value="{{p}}">{{p}}</option>
