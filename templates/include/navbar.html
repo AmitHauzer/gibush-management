@@ -9,9 +9,18 @@
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
           <li>
             <a href="/" class="nav-link text-white">
-              <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#home"/></svg>
+              <svg class="bi d-block mx-auto mb-1" width="20" height="20">
+                <use xlink:href="#home" />
+              </svg>
               Home
             </a>
+          </li>
+          <li>
+            {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+            {% else %}
+            <p>Welcome, new user. Please log in.</p>
+            {% endif %}
           </li>
           <!-- <li>
             <a href="#" class="nav-link text-white">
