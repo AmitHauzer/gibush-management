@@ -67,7 +67,7 @@
                     <td scope="col">{{ soldier.shalishut.identity_num }}</td>
                     <td scope="col">{{ soldier.shalishut.city }}</td>
                     <td scope="col">{{ soldier.shalishut.profile }}</td>
-                    <td><button class="btn btn-light" disabled>Update(admin)</button></td>
+                    <td><a href="{% url 'shalishut:update-soldier-shalishut-admin' soldier.id %}"><button class="btn btn-light" disabled>Update(admin)</button></a></td>
                 </tr>
                 {% endfor%}
             </tbody>

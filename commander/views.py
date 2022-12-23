@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from soldiers.models import Soldier
 from baror.models import BarorScore
-from .decorators import login_required
+from .decorators import allowed_users, login_required
 
 
 @login_required
@@ -15,7 +15,7 @@ def menu(request):
     return render(request,'commander_menu.html', {'status':status})
 
 
-
+@allowed_users(allowed_roles=['ShalishutAdmin'])
 def acceptance_criteria(request):
     # Get data
     all_baror_score = BarorScore.objects.exclude(float_score=None).order_by('float_score')
