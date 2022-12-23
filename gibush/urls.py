@@ -20,14 +20,17 @@ from django.conf.urls.static import static
 from . import settings
 
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_page),
+    path('', views.home_page, name='home-page'),
     path('soldiers/', include('soldiers.urls')),
     path('barors/', include('baror.urls')),
     path('shalishut/', include('shalishut.urls')),
     path('clinic/', include('clinic.urls')),
     path('commander/', include('commander.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
