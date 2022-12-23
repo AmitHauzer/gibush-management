@@ -30,7 +30,7 @@ urlpatterns = [
     path('shalishut/', include('shalishut.urls')),
     path('clinic/', include('clinic.urls')),
     path('commander/', include('commander.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),  # New
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
