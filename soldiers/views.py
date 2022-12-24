@@ -12,7 +12,3 @@ def all_soldiers(request):
 def single_soldier(request, pk):
     soldier = Soldier.objects.get(id=pk)
     return render(request, 'single_soldier.html',{'soldier':soldier})
-
-
-def home_page(request):
-    return render(request, 'home.html')
