@@ -75,6 +75,8 @@ def allowed_users(allowed_roles=[]):
                 # print("Allowed?       ",result)
             if any(group in allowed_roles for group in groups):
                 return view_func(request,*args,**kwargs)
+            if request.user.is_staff:
+                return view_func(request,*args,**kwargs)
             else:
                 messages.error(request, "You are not allowed.")
                 return redirect("home-page")
