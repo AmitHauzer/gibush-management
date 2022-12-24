@@ -24,12 +24,15 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Home page
     path('', views.home_page, name='home-page'),
+    # Apps
     path('soldiers/', include('soldiers.urls')),
     path('barors/', include('baror.urls')),
     path('shalishut/', include('shalishut.urls')),
     path('clinic/', include('clinic.urls')),
     path('commander/', include('commander.urls')),
+    path('users/', include('user_management.urls')),
     path('accounts/', include('django.contrib.auth.urls')),  # New
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
