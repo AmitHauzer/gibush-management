@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from soldiers.models import Soldier
 from baror.models import BarorScore
-from .decorators import allowed_users, login_required
+from user_management.decorators import allowed_users, login_required
 
 
 @login_required

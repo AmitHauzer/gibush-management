@@ -3,7 +3,7 @@ from soldiers.models import Soldier
 from shalishut.models import Shalishut
 from django.contrib import messages
 from django.db.models import Q
-from commander.decorators import allowed_users, login_required
+from user_management.decorators import allowed_users, login_required
 
 
 @login_required
