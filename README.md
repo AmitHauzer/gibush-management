@@ -3,19 +3,32 @@
 1. **Git clone.**
 2. **Open vevn:**
 	>     python -m venv venv
+
 3. **Active venv:**
     >     ./venv/Scripts/active
-5. **Install requirements:**
+
+4. **Install requirements:**
     >		pip list
     >		pip install -r requirements.txt
     >		pip list
  
-6. **Migrations:**
+5. **Migrations:**
     >		python manage.py makemigrations
     >		python manage.py migrate
     >		python manage.py createsuperuser
-7.	**Launch up the server:** 
+
+6. **Launch up the server:** 
     >		python manage.py runserver
+    
+7. **Login to admin and create the groups:**
+    - Shalishut.
+    - ShalishutAdmin.
+    - Clinic.
+    - ClinicAdmin.
+    - Baror.
+    - Commander.
+
+
 # Workflow
 ## Shalishut:
 - **Add a Soldier**.
