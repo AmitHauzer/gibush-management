@@ -25,7 +25,8 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Home page
-    path('', views.home_page, name='home-page'),
+    path('', views.edit_home_path, name='edit-home-page'),
+    path('home/', views.home_page, name='home-page'),
     # Apps
     path('soldiers/', include('soldiers.urls')),
     path('barors/', include('baror.urls')),
