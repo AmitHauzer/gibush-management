@@ -22,8 +22,8 @@ def user_passes_test(
             test_result = test_func(request.user)
             if test_result:
                 return view_func(request, *args, **kwargs)
-            elif test_result == False:
-                messages.error(request,'Authentication Error: Login required')
+            # elif test_result == False:
+            #     messages.error(request,'Authentication Error: Login required')
             path = request.build_absolute_uri()
             resolved_login_url = resolve_url(login_url or settings.LOGIN_URL)
             # If the login url is the same scheme and net location then just
@@ -78,8 +78,8 @@ def allowed_users(allowed_roles=[]):
             if request.user.is_staff:
                 return view_func(request,*args,**kwargs)
             else:
-                messages.error(request, "You are not allowed.")
-                return redirect("home-page")
+                messages.warning(request, "Your account doesn't have access to this page. To proceed, please login with an account that has access.")
+                return redirect("user_management:login-page")
         return wrapper_func
     return decorator
 

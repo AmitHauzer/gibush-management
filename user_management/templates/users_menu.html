@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="container">
+        <h1 style="text-align: center">User Management</h1>
+        <div class="list-group">
+            <form class="d-flex" role="search" action="{% url 'user_management:menu-users' %}">
+                <input name="search" class="form-control me-2" type="search" placeholder="search" aria-label="search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+            <a href="{% url 'user_management:menu-users' %}"><button type="button"
+                    class="list-group-item  list-group-item-action btn btn-light">Add user</button></a>
+
+        </div>
+        <br>
+    </div>
+
+    <div class="container">
+        <table class="table  caption-top">
+            <caption style="text-align: left">
+                <h3>Users List - {{users.active.count}}</h3>
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Permissions</th>
+                    <th scope="col">Is active</th>
+                    <th scope="col">Is staff</th>
+                    <th scope="col">Is superuser</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users.active %}
+                <tr>
+                    <th scope="row">{{ user.username }}</th>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>
+                        {% with groups=user.groups.all %}
+                        
+                        {% if groups %}
+                            {% for group in groups %}
+                            <span>{{group.name}}</span>    
+                            {% if forloop.last is False%}
+                            <span>,</span>
+                            {% endif %}
+
+                            {% endfor %}
+                        {% else %}
+                        <span></span>
+
+                        {% endif %}
+                        {% endwith %}
+                    </td>
+                    <td>{{ user.is_active }}</td>
+                    <td>{{ user.is_staff }}</td>
+                    <td>{{ user.is_superuser }}</td>
+                    <td><a href="{% url 'user_management:menu-users' %}"><button
+                                class="btn btn-light">Update</button></a></td>
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="container">
+        <table class="table  caption-top">
+            <caption style="text-align: left">
+                <h3>Inactive Users - {{users.inactive.count}}</h3>
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Permissions</th>
+                    <th scope="col">Is active</th>
+                    <th scope="col">Is staff</th>
+                    <th scope="col">Is superuser</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users.inactive %}
+                <tr>
+                    <th scope="row">{{ user.username }}</th>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>
+                        {% with groups=user.groups.all %}
+                        
+                        {% if groups %}
+                            {% for group in groups %}
+                            <span>{{group.name}}</span>
+                                {% if forloop.last is False%}
+                                    <span>,</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                        <span></span>
+    
+                        {% endif %}
+                        {% endwith %}
+                    </td>
+                    <td>{{ user.is_active }}</td>
+                    <td>{{ user.is_staff }}</td>
+                    <td>{{ user.is_superuser }}</td>
+                    <td><a href="{% url 'user_management:menu-users' %}"><button
+                                class="btn btn-light">Update</button></a></td>
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
