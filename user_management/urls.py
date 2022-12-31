@@ -5,8 +5,9 @@ app_name = 'user_management'
 urlpatterns = [
     # Users
     path('', views.menu, name='menu-users'),
-    path('adduser/', views.menu, name='add-user-users'),
+    path('adduser/', views.add_user, name='add-user-users'),
     path('login/', views.login_page, name='login-page'),
+    path('logout/', views.logout_page, name='logout-page'),
     
     
 ]
