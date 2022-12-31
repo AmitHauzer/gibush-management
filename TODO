@@ -1,6 +1,3 @@
-User:
-    - login
-    - change password
 
 home:
     - permissions
@@ -8,6 +5,7 @@ home:
 Soldier model:
     - status                                    - DONE
     - add IDF_num                               - DONE
+    - view
     - add Gibush event
 
 Baror app:
@@ -35,9 +33,21 @@ Commander:
     - init                                      - DONE
     - chart                                     - DONE
     - add acceptance criteria page              - DONE
-    - add user
+    
+    
+
+User Managemnet:
+    - Commander permissiond                     - DONE
+    - list of the active users                  - DONE
+    - list of the inactive users                - DONE
+    - login                                     - DONE
+    - logout                                    - DONE
+    - add user                                  - DONE
     - edit user permissions
-    - list of all users
+    - edit active/inactive
+    - search
+
+
 
 Search:
     - shalishut                                 - DONE
