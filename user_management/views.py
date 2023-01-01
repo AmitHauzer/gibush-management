@@ -24,10 +24,26 @@ def add_user(request):
             form.save()
             username = request.POST.get('username')
             messages.success(request, f"The user {username} has been added successfully" )
-            return redirect("home-page")
+            return redirect("user_management:menu-users")
         else:
             form_error_handling(request, form)
     return render(request, 'add_user.html', {'form':form})
+
+
+@allowed_users(allowed_roles=['Commander'])
+def edit_user(request, pk):
+    user = User.objects.get(id=pk) 
+    form = UserChangeForm()
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = request.POST.get('username')
+            messages.success(request, f"The user {username} has been edited successfully" )
+            return redirect("user_management:menu-users")
+        else:
+            form_error_handling(request, form)
+    return render(request, 'edit_user.html', {'form':form})
 
 
 def login_page(request):
@@ -46,7 +62,6 @@ def login_page(request):
                 messages.error(request, "Your username and password didn't match. Please try again.")
         else:
             form_error_handling(request, form)
-    
     return render(request, 'login.html', {'form':form})
 
 
