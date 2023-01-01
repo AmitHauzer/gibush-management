@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 <div class="container">
     <div class="container">
         <h1 style="text-align: center">User Management</h1>
@@ -55,9 +56,31 @@
                         {% endif %}
                         {% endwith %}
                     </td>
-                    <td>{{ user.is_active }}</td>
-                    <td>{{ user.is_staff }}</td>
-                    <td>{{ user.is_superuser }}</td>
+                    
+                    {% if user.is_active %}
+                    <td scope="col">
+                        <img src="{% static 'icons/V-lg.svg' %}" alt="">
+                    </td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+
+                    {% if user.is_staff %}
+                    <td scope="col">
+                        <img src="{% static 'icons/V-lg.svg' %}" alt="">
+                    </td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+
+                    {% if user.is_superuser %}
+                    <td scope="col">
+                        <img src="{% static 'icons/V-lg.svg' %}" alt="">
+                    </td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    
                     <td><a href="{% url 'user_management:edit-user-users' user.id %}"><button
                                 class="btn btn-outline-info">Edit</button></a></td>
                 </tr>
@@ -105,9 +128,29 @@
                         {% endif %}
                         {% endwith %}
                     </td>
-                    <td>{{ user.is_active }}</td>
-                    <td>{{ user.is_staff }}</td>
-                    <td>{{ user.is_superuser }}</td>
+                    {% if user.is_active %}
+                    <td scope="col">
+                        <img src="{% static 'icons/V-lg.svg' %}" alt="">
+                    </td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+
+                    {% if user.is_staff %}
+                    <td scope="col">
+                        <img src="{% static 'icons/V-lg.svg' %}" alt="">
+                    </td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+
+                    {% if user.is_superuser %}
+                    <td scope="col">
+                        <img src="{% static 'icons/V-lg.svg' %}" alt="">
+                    </td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
                     <td><a href="{% url 'user_management:edit-user-users' user.id %}"><button
                                 class="btn btn-outline-info">Edit</button></a></td>
                 </tr>
