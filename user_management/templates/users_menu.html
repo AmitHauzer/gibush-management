@@ -58,8 +58,8 @@
                     <td>{{ user.is_active }}</td>
                     <td>{{ user.is_staff }}</td>
                     <td>{{ user.is_superuser }}</td>
-                    <td><a href="{% url 'user_management:menu-users' %}"><button
-                                class="btn btn-light">Update</button></a></td>
+                    <td><a href="{% url 'user_management:edit-user-users' user.id %}"><button
+                                class="btn btn-outline-info">Edit</button></a></td>
                 </tr>
                 {% endfor%}
             </tbody>
@@ -108,8 +108,8 @@
                     <td>{{ user.is_active }}</td>
                     <td>{{ user.is_staff }}</td>
                     <td>{{ user.is_superuser }}</td>
-                    <td><a href="{% url 'user_management:menu-users' %}"><button
-                                class="btn btn-light">Update</button></a></td>
+                    <td><a href="{% url 'user_management:edit-user-users' user.id %}"><button
+                                class="btn btn-outline-info">Edit</button></a></td>
                 </tr>
                 {% endfor%}
             </tbody>
