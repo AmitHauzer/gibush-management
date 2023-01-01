@@ -43,9 +43,10 @@ User Managemnet:
     - login                                     - DONE
     - logout                                    - DONE
     - add user                                  - DONE
+    - search                                    - DONE
     - edit user permissions
     - edit active/inactive
-    - search
+    
 
 
 

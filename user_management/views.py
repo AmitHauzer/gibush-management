@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from .decorators import allowed_users, login_required
 from django.contrib.auth.models import User, Group
+from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponse
 
@@ -63,6 +64,20 @@ def login_page(request):
         else:
             form_error_handling(request, form)
     return render(request, 'login.html', {'form':form})
+
+
+@login_required
+def search(request):
+    search_req = request.GET.get('search')
+    Users = User.objects.filter(
+            Q(username__istartswith=search_req) | 
+            Q(first_name__istartswith=search_req) |
+            Q(last_name__istartswith=search_req)
+        )
+    active_users = Users.filter(is_active=True)
+    inactive_users = Users.exclude(is_active=True)
+    return render(request, 'users_menu.html', {'users':{'active':active_users, 'inactive':inactive_users}})
+
 
 
 @login_required
