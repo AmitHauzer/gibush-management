@@ -34,7 +34,7 @@ urlpatterns = [
     path('clinic/', include('clinic.urls')),
     path('commander/', include('commander.urls')),
     path('users/', include('user_management.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),  # New
+    # path('accounts/', include('django.contrib.auth.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
