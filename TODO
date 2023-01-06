@@ -44,8 +44,11 @@ User Managemnet:
     - logout                                    - DONE
     - add user                                  - DONE
     - search                                    - DONE
-    - edit user permissions
-    - edit active/inactive
+    - edit user permissions                     - DONE
+    - edit active/inactive                      - DONE
+    - permissions for clinic
+    - permissions for baror
+    
     
 
 

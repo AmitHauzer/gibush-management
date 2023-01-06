@@ -33,18 +33,51 @@ def add_user(request):
 
 @allowed_users(allowed_roles=['Commander'])
 def edit_user(request, pk):
-    user = User.objects.get(id=pk) 
-    form = UserChangeForm()
+    user_edit = User.objects.get(id=pk)
+    groups = Group.objects.all() 
     if request.method == 'POST':
-        form = UserChangeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = request.POST.get('username')
-            messages.success(request, f"The user {username} has been edited successfully" )
+        username_edit = request.POST.get('username')
+        firstname_edit = request.POST.get('first_name')
+        lastname_edit = request.POST.get('last_name')
+        email_edit = request.POST.get('email')
+        is_active_edit = request.POST.get('is_active')
+        groups_edit = request.POST.getlist('groups')
+        try:
+            # Change username:
+            if user_edit.username != username_edit:
+                user_edit.username = username_edit
+        
+            # Personal details:
+            if firstname_edit:
+                user_edit.first_name = firstname_edit
+            else:
+                user_edit.first_name = ''
+            if lastname_edit:
+                user_edit.last_name = lastname_edit
+            else:
+                user_edit.last_name = ''
+            if email_edit:    
+                user_edit.email = email_edit
+            else:
+                user_edit.email = ''
+            
+            # Is active?
+            if is_active_edit == 'on':
+                user_edit.is_active = True
+            else:
+                user_edit.is_active = False
+            
+            # Save
+            user_edit.save()
+            
+            # Groups
+            user_edit.groups.set(groups_edit) 
+            
+            messages.success(request, f"The user {username_edit} has been edited successfully" )
             return redirect("user_management:menu-users")
-        else:
-            form_error_handling(request, form)
-    return render(request, 'edit_user.html', {'form':form})
+        except Exception as ex:
+            messages.error(request, f"ERROR! {ex}")
+    return render(request, 'edit_user.html', {'user_edit':user_edit, 'groups':groups})
 
 
 def login_page(request):
