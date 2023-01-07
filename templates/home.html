@@ -1,15 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-            <h1 style="text-align: center">Main Menu</h1>
-            <div class="list-group">
-                <a href="{% url 'shalishut:menu-shalishut' %}"><button type="button" class="list-group-item list-group-item-action">Shalishut</button></a>
-                <a href="{% url 'clinic:menu-clinic' %}"><button type="button" class="list-group-item list-group-item-action">Clinic</button></a>
-                <a href="{% url 'barors:all-barors' %}"><button type="button" class="list-group-item list-group-item-action">Barors</button></a>
-                <a href="{% url 'commander:menu-commander' %}"><button type="button" class="list-group-item  list-group-item-action btn btn-light" >Commander</button></a>
-                <a href="{% url 'user_management:menu-users' %}"><button type="button" class="list-group-item  list-group-item-action btn btn-light" >User Management</button></a>
-                <!-- <a href="{% url 'soldiers:all-soldiers' %}"><button type="button" class="list-group-item  list-group-item-action btn btn-light" >Soldiers</button></a>
+  <h1 style=" text-align: center">Main Menu</h1>
+  <div class="list-group">
+    <a href="{% url 'shalishut:menu-shalishut' %}"><button type="button"
+        class="list-group-item list-group-item-action">Shalishut</button></a>
+    <a href="{% url 'clinic:menu-clinic' %}"><button type="button"
+        class="list-group-item list-group-item-action">Clinic</button></a>
+    <a href="{% url 'barors:all-barors' %}"><button type="button"
+        class="list-group-item list-group-item-action">Barors</button></a>
+    <a href="{% url 'commander:menu-commander' %}"><button type="button"
+        class="list-group-item  list-group-item-action btn btn-light">Commander</button></a>
+    <a href="{% url 'user_management:menu-users' %}"><button type="button"
+        class="list-group-item  list-group-item-action btn btn-light">User Management</button></a>
+    <!-- <a href="{% url 'soldiers:all-soldiers' %}"><button type="button" class="list-group-item  list-group-item-action btn btn-light" >Soldiers</button></a>
                 <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button> -->
-              </div>
+  </div>
+  <div>
+    <br>
+          {% include 'charts/charts_menu.html' %}
+  </div>
 </div>
+
 {% endblock %}
