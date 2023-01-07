@@ -15,19 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from soldiers import views
+from user_management import views
 from django.conf.urls.static import static
 from . import settings
 
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_page),
+    # Home page
+    path('', views.edit_home_path, name='edit-home-page'),
+    path('home/', views.home_page, name='home-page'),
+    # Apps
     path('soldiers/', include('soldiers.urls')),
     path('barors/', include('baror.urls')),
     path('shalishut/', include('shalishut.urls')),
     path('clinic/', include('clinic.urls')),
     path('commander/', include('commander.urls')),
+    path('users/', include('user_management.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = '/users/login/'
+
 
 # Application definition
 
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'shalishut',
     'clinic',
     'commander',
+    'user_management',
 ]
 
 MIDDLEWARE = [
@@ -126,7 +129,6 @@ MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    # '/var/www/static/',
 ]
 
 MEDIA_ROOT = BASE_DIR / 'static/soldiers_docs'

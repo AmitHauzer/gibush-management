@@ -9,9 +9,18 @@
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
           <li>
             <a href="/" class="nav-link text-white">
-              <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#home"/></svg>
+              <svg class="bi d-block mx-auto mb-1" width="20" height="20">
+                <use xlink:href="#home" />
+              </svg>
               Home
             </a>
+          </li>
+          <li>
+            {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+            {% else %}
+            <p>Welcome, new user. Please log in.</p>
+            {% endif %}
           </li>
           <!-- <li>
             <a href="#" class="nav-link text-white">
@@ -36,19 +45,19 @@
               <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#people-circle"/></svg>
               Customers
             </a>
-          </li>
+          </li> -->
           <li>
-            <a href="#" class="nav-link text-white">
+            <a href="{% url 'user_management:login-page' %}" class="nav-link text-white">
               <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#people-circle"/></svg>
               Login
             </a>
-          </li> -->
-          <!-- <li>
-            <a href="#" class="bi d-flex mb-1" width="20" height="20">
-              <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
-              <button class="btn btn-secendry-light ">Logout</button>
+          </li>
+          <li>
+            <a href="{% url 'user_management:logout-page' %}" class="nav-link text-white">
+              <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#people-circle"/></svg>
+              Logout
             </a>
-          </li> -->
+          </li>
           <!-- <div class="nav-link">
             <button type="button" class="btn btn-light text-dark me-2">Login</button>
           </div> -->

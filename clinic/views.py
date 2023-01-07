@@ -4,15 +4,17 @@ from soldiers.models import Soldier
 from clinic.models import Clinic
 from django.contrib import messages
 from django.db.models import Q
+from user_management.decorators import allowed_users, login_required
 
 
-# Create your views here.
+@login_required
 def menu(request):
     soldiers_befor = Soldier.objects.filter(soldier_status=Soldier.SoldierStatus.WAITING_FOR_CLINIC)
     soldiers_after = Soldier.objects.exclude(Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_CLINIC) | Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT))
     return render(request, 'clinic_menu.html',{'soldiers':{'before':soldiers_befor, 'after':soldiers_after}})
 
 
+@login_required
 def search(request):
     search_req = request.GET.get('search')
     soldiers = Soldier.objects.filter(Q(shalishut__firstname__istartswith=search_req) | Q(shalishut__lastname__istartswith=search_req) | Q(idf_num__icontains=search_req) | Q(shalishut__identity_num__istartswith=search_req))
@@ -21,6 +23,7 @@ def search(request):
     return render(request, 'clinic_menu.html',{'soldiers':{'before':soldiers_befor, 'after':soldiers_after}})
 
 
+@allowed_users(allowed_roles=['Clinic'])
 def update_soldier(request, pk):
     soldier = Soldier.objects.get(id=pk)
     if request.method == 'POST':
