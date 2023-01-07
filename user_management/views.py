@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
+
+from soldiers.models import Soldier
 from .decorators import allowed_users, login_required
 from django.contrib.auth.models import User, Group
 from django.db.models import Q
@@ -115,7 +117,12 @@ def search(request):
 
 @login_required
 def home_page(request):
-    return render(request, 'home.html')
+    status = {}
+    for s in Soldier.SoldierStatus:
+        key = str(s).upper().replace(' ','_')
+        status[key]=Soldier.objects.filter(soldier_status=s)
+    return render(request, 'home.html', {'status':status})
+
 # to get path 'home/'
 def edit_home_path(request):
     return redirect('home-page')
