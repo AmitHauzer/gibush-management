@@ -1,6 +1,6 @@
 
 home:
-    - permissions
+    - permissions                               - DONE
 
 Soldier model:
     - status                                    - DONE
@@ -34,7 +34,8 @@ Commander:
     - chart                                     - DONE
     - add acceptance criteria page              - DONE
     
-    
+ Soldiers:
+    - View page   
 
 User Managemnet:
     - Commander permissiond                     - DONE
@@ -46,8 +47,8 @@ User Managemnet:
     - search                                    - DONE
     - edit user permissions                     - DONE
     - edit active/inactive                      - DONE
-    - permissions for clinic
-    - permissions for baror
+    - permissions for clinic                    - DONE
+    - permissions for baror                     - DONE
     
     
 
