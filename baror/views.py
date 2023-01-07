@@ -4,14 +4,16 @@ from django.http import HttpResponse
 from .models import BarOr, BarorScore
 from soldiers.models import Soldier
 from colorama import Fore
+from user_management.decorators import allowed_users, login_required
 
 
+@login_required
 def list_of_barors(request):
     barors = BarOr.objects.all()
     return render(request, 'list_of_barors.html', {'barors':barors})
 
 
-
+@allowed_users(allowed_roles=['Baror'])
 def add_baror(request):
     barors_counter = BarOr.objects.count()
     try:
@@ -24,7 +26,7 @@ def add_baror(request):
         return redirect('barors:all-barors')
 
 
-
+@allowed_users(allowed_roles=['Baror'])
 def edit_baror(request, pk):
     print(pk)
     baror = BarOr.objects.get(id=pk)
@@ -32,7 +34,7 @@ def edit_baror(request, pk):
     return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
 
 
-
+@allowed_users(allowed_roles=['Baror'])
 def baror_is_ready(request, pk):
     # Get baror
     baror = BarOr.objects.get(id=pk)
@@ -44,7 +46,7 @@ def baror_is_ready(request, pk):
     return redirect('barors:all-barors')
 
 
-
+@allowed_users(allowed_roles=['Baror'])
 def add_soldier_to_round(request):
     # Get params (POST)
     baror_id = request.POST.get('pk')
@@ -63,7 +65,7 @@ def add_soldier_to_round(request):
     return redirect('barors:edit-baror',pk=baror_id)
 
 
-
+@allowed_users(allowed_roles=['Baror'])
 def start_baror_page(request, pk):
     # Get baror
     baror = BarOr.objects.get(id=pk)
@@ -77,7 +79,7 @@ def start_baror_page(request, pk):
     return render(request, 'baror_round.html', {'baror':baror, 'barorscores':barorscores})
 
 
-
+@allowed_users(allowed_roles=['Baror'])
 def manage_running_round(request,pk):
     # Get data
     if request.method == 'POST':
