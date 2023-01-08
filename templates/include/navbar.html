@@ -6,7 +6,7 @@
           <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
         </a> -->
 
-        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small" style="width: 100%;">
           <li>
             <a href="/" class="nav-link text-white">
               <svg class="bi d-block mx-auto mb-1" width="20" height="20">
@@ -15,11 +15,9 @@
               Home
             </a>
           </li>
-          <li>
+          <li style="margin: auto;">
             {% if user.is_authenticated %}
-            <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-            {% else %}
-            <p>Welcome, new user. Please log in.</p>
+            <samp>Welcome, {{ user.username }}.</samp>
             {% endif %}
           </li>
           <!-- <li>
@@ -47,20 +45,22 @@
             </a>
           </li> -->
           <li>
-            <a href="{% url 'user_management:login-page' %}" class="nav-link text-white">
-              <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#people-circle"/></svg>
-              Login
-            </a>
-          </li>
-          <li>
+            {% if user.is_authenticated %}
             <a href="{% url 'user_management:logout-page' %}" class="nav-link text-white">
-              <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#people-circle"/></svg>
+              <svg class="bi d-block mx-auto mb-1" width="20" height="20">
+                <use xlink:href="#people-circle" />
+              </svg>
               Logout
             </a>
+            {% else %}
+            <a href="{% url 'user_management:login-page' %}" class="nav-link text-white">
+              <svg class="bi d-block mx-auto mb-1" width="20" height="20">
+                <use xlink:href="#people-circle" />
+              </svg>
+              Login
+            </a>
+            {% endif %}
           </li>
-          <!-- <div class="nav-link">
-            <button type="button" class="btn btn-light text-dark me-2">Login</button>
-          </div> -->
         </ul>
       </div>
     </div>
