@@ -67,3 +67,12 @@ add gibush model:
     - like baror
     - old true/false
     - filter object true
+
+
+New UI:
+    - Login
+    - side bar:
+        - add departments
+    - top bar:
+        - remove search?
+        
