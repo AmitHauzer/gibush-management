@@ -1,4 +1,60 @@
-{% extends "base.html" %}
+{% extends "home_shalishut.html" %}
+{% block shalishut-main %}
+<div class="container-fluid">
+
+    <div style="margin: auto;" class="col-lg-6">
+        <!-- Collapsable Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <div class="d-block card-header py-3">
+                <h3 class="m-0 font-weight-bold text-primary">Update Soldier</h3>
+            </div>
+
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCardExample">
+                <div class="continer">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div>Complete the soldier's personal details.</div> <br>
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" id="soldier_pk" name="soldier_pk" value="{{soldier.id}}">
+                                <label for="first_name">First name:</label><br>
+                                <input type="text" id="first_name" name="first_name" required><br>
+                                <label for="last_name">Last name:</label><br>
+                                <input type="text" id="last_name" name="last_name" required><br>
+                                <label for="identity_num">Identity num:</label><br>
+                                <input type="text" id="identity_num" name="identity_num" minlength="9" maxlength="9"
+                                    required><br>
+                                <label for="city">City:</label><br>
+                                <input type="text" id="city" name="city" required><br>
+                                <label for="profile">Profile:</label>
+                                <select id="profile" name="profile" required>
+                                    <option value="">----</option>
+                                    {% for p in profiles %}
+                                    <option value="{{p}}">{{p}}</option>
+                                    {% endfor %}s
+                                </select><br>
+                                <!-- <label for="Picture">Picture:</label><br>
+                                <input type=file name="picture"><br><br> -->
+                                <input class="btn btn-success float-end" type="submit" value="Update">
+
+                            </form>
+                        </div>
+                        <br>
+                        <a href="{% url 'shalishut:menu-shalishut' %}"><button
+                                class="btn btn-outline-secondary float-end">Back</button></a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
 {% block content %}
 <div class="container">
 
