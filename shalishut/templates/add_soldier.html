@@ -15,16 +15,17 @@
                 <div class="continer">
                     <div class="card-body m-3">
                         <div class="form-group">
-                            <div>Please, enter the soldier <strong>gibush</strong> number.</div> <br>
+                            <p>Please, enter the soldier <strong>gibush</strong> number.</p><br>
                             <form action="{% url 'shalishut:add-soldier-shalishut' %}" method="post">
                                 {% csrf_token %}
                                 <label for="idf_num">Idf Number: </label>
-                                <input type="number" id="idf_num" min="1" max="500" name="idf_num" required><br>
-                                <input class="btn btn-success" type="submit" value="Add">
+                                <input type="number" id="idf_num" min="1" max="500" name="idf_num" required><br><br>
+                                <input class="btn btn-success float-end" type="submit" value="Add">
                             </form>
+                            <a href="{% url 'shalishut:menu-shalishut' %}"><button
+                                    class="btn btn-outline-secondary float-start">Back</button></a>
                         </div>
-                        <a href="{% url 'shalishut:menu-shalishut' %}"><button
-                                class="btn btn-outline-secondary float-end">Back</button></a>
+
                     </div>
                     <br>
                 </div>

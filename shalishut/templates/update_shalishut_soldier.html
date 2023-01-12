@@ -34,16 +34,17 @@
                                     {% for p in profiles %}
                                     <option value="{{p}}">{{p}}</option>
                                     {% endfor %}s
-                                </select><br>
+                                </select><br><br>
                                 <!-- <label for="Picture">Picture:</label><br>
                                 <input type=file name="picture"><br><br> -->
                                 <input class="btn btn-success float-end" type="submit" value="Update">
 
                             </form>
+                            <a href="{% url 'shalishut:menu-shalishut' %}"><button
+                                    class="btn btn-outline-secondary float-start">Back</button></a>
                         </div>
                         <br>
-                        <a href="{% url 'shalishut:menu-shalishut' %}"><button
-                                class="btn btn-outline-secondary float-end">Back</button></a>
+
                     </div>
                     <br>
                 </div>

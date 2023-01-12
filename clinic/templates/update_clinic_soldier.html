@@ -1,4 +1,78 @@
-{% extends "base.html" %}
+{% extends "home_clinic.html" %}
+{% block clinic-main %}
+<div class="container-fluid">
+
+    <div style="margin: auto;" class="col-lg-6">
+        <!-- Collapsable Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <div class="d-block card-header py-3">
+                <h3 class="m-0 font-weight-bold text-primary">Update Clinic</h3>
+            </div>
+
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCardExample">
+                <div class="continer">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <p>Define the soldier's medical condition.</p> <br>
+                            <table class="table  caption-top">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">IDF Number:</th>
+                                        <td>{{soldier.idf_num}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>First Name:</th>
+                                        <td>{{soldier.shalishut.firstname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Last Name:</th>
+                                        <td>{{soldier.shalishut.lastname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>id:</th>
+                                        <td>{{soldier.shalishut.identity_num}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Profile:</th>
+                                        <td>{{soldier.shalishut.profile}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <form class="form-control-lg" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <label for="medial_condition">Medical Condition:</label>
+                                <select id="medial_condition" name="medial_condition" required>
+                                    <option value="">-----</option>
+                                    {% for s in status %}
+                                    <option value="{{s}}">{{s}}</option>
+                                    {% endfor %}s
+                                </select><br><br>
+                                <label for="health_declaration">Health Declaration:</label><br>
+                                <input type=file name="health_declaration"><br><br>
+                                <label for="note">Note:</label><br>
+                                <textarea style="width: 100%; height: 200%;" type="text" id="note"
+                                    name="note"></textarea><br>
+                                <br>
+                                <input class="btn btn-success float-end" type="submit" value="Update">
+
+                            </form>
+                        </div>
+                        <br>
+                        <a href="{% url 'clinic:menu-clinic' %}"><button
+                                class="btn btn-sm btn-outline-secondary float-start mb-4 ">Back</button></a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="container">
 
