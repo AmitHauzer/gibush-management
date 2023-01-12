@@ -1,4 +1,161 @@
 {% extends "base.html" %}
+{% block main %}
+{% load static %}
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="mb-0 text-gray-800" style="font-weight: bold;">Shalishut Menu</h1>
+        <a href="#" class="d-inline-block btn btn-primary shadow-sm"><svg xmlns="{% static 'icons/plus-lg.svg'%}"
+                width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+            </svg> Add Soldier</a>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnins (Monthly) Card -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text font-weight-bold text-success text-uppercase mb-1">
+                                After Shalishut</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{soldiers.after.count}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-1">
+                            <div class="text font-weight-bold text-warning text-uppercase mb-1">
+                                Waiting List</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{soldiers.before.count}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DataTales -->
+    {% if soldiers.before.count > 0 %}
+    <div class="border-left-warning card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Waiting List</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <th scope="col">IDF Number</th>
+                        <th scope="col">Soldier Status</th>
+                        <th scope="col"> </th>
+                    </thead>
+                    <tfoot>
+                        <th scope="col">IDF Number</th>
+                        <th scope="col">Soldier Status</th>
+                        <th scope="col"> </th>
+                    </tfoot>
+                    <tbody>
+                        {% for soldier in soldiers.before %}
+                        <tr>
+                            <th scope="row">{{ soldier.idf_num }}</th>
+                            <td>{{ soldier.soldier_status }}</td>
+                            <td><a href="{% url 'shalishut:update-soldier-shalishut' soldier.id %}"> <button
+                                        type="button" class="btn btn-outline-info"><svg
+                                            xmlns="{% static 'icons/plus-lg.svg' %}" width="16" height="16"
+                                            fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path
+                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                                            </path>
+                                            <path fill-rule="evenodd"
+                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
+                                            </path>
+                                        </svg></button></a></td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="border-left-success card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">After Shalishut</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">IDF Number</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Profile</th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th scope="col">IDF Number</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Profile</th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for soldier in soldiers.after %}
+                        <tr>
+                            <th scope="row">{{ soldier.idf_num }}</th>
+                            <td>{{ soldier.shalishut.firstname }} {{ soldier.shalishut.lastname }}</td>
+                            <td>{{ soldier.soldier_status }}</td>
+                            <td scope="col">{{ soldier.shalishut.identity_num }}</td>
+                            <td scope="col">{{ soldier.shalishut.city }}</td>
+                            <td scope="col">{{ soldier.shalishut.profile }}</td>
+                            <td><a href="{% url 'shalishut:update-soldier-shalishut-admin' soldier.id %}">
+                                    <button type="button" class="btn btn-outline-info"><svg
+                                            xmlns="{% static 'icons/plus-lg.svg' %}" width="16" height="16"
+                                            fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path
+                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                                            </path>
+                                            <path fill-rule="evenodd"
+                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
+                                            </path>
+                                        </svg></button></a></td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
 {% block content %}
 <div class="container">
     <div class="container">
@@ -67,7 +224,8 @@
                     <td scope="col">{{ soldier.shalishut.identity_num }}</td>
                     <td scope="col">{{ soldier.shalishut.city }}</td>
                     <td scope="col">{{ soldier.shalishut.profile }}</td>
-                    <td><a href="{% url 'shalishut:update-soldier-shalishut-admin' soldier.id %}"><button class="btn btn-light">Update(admin)</button></a></td>
+                    <td><a href="{% url 'shalishut:update-soldier-shalishut-admin' soldier.id %}"><button
+                                class="btn btn-light">Update(admin)</button></a></td>
                 </tr>
                 {% endfor%}
             </tbody>

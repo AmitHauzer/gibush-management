@@ -3,6 +3,7 @@
 {% load static %}
 
 <head>
+  <link rel="icon" type="png" sizes="800x800" href="{% static 'icons/K9-icon.png' %}">
   <title>Gibush</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sidebars/">
@@ -24,6 +25,7 @@
 
   <!-- Custom styles for this template-->
   <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 </head>
 
 
@@ -47,6 +49,8 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
+        {% block main %}
+        {% endblock %}
         <div class="container-fluid">
 
           <!-- Page Heading -->
@@ -434,10 +438,14 @@
 
   <!-- Page level plugins -->
   <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
   <!-- Page level custom scripts -->
   <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-  <!-- <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script> -->
+  <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+  <!-- <script src="{% static 'js/demo/datatables-demo.js' %}"></script> -->
+
 
 
 </body>
