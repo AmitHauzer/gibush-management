@@ -10,7 +10,7 @@ from user_management.decorators import allowed_users, login_required
 @login_required
 def list_of_barors(request):
     barors = BarOr.objects.all()
-    return render(request, 'list_of_barors.html', {'barors':barors})
+    return render(request, 'list_of_barors.html', {'barors': barors})
 
 
 @allowed_users(allowed_roles=['Baror'])
@@ -19,7 +19,7 @@ def add_baror(request):
     try:
         baror = BarOr(baror_round=f'BarOr {barors_counter+1}')
         baror.save()
-        messages.success(request, "Round added successfully" )
+        messages.success(request, "Round added successfully")
     except Exception as ex:
         messages.error(request, f'ERROR! {str(ex)}')
     finally:
@@ -31,7 +31,7 @@ def edit_baror(request, pk):
     print(pk)
     baror = BarOr.objects.get(id=pk)
     soldiers = Soldier.objects.filter(soldier_status='Waiting for Baror')
-    return render(request, 'edit_baror.html', {'baror':baror,'soldiers':soldiers})
+    return render(request, 'edit_baror.html', {'baror': baror, 'soldiers': soldiers})
 
 
 @allowed_users(allowed_roles=['Baror'])
@@ -62,31 +62,32 @@ def add_soldier_to_round(request):
     # Update soldier's status
     baror_score.update_soldier_status_to_readey_to_running()
     print(f'Baror Score: {baror_score}')
-    return redirect('barors:edit-baror',pk=baror_id)
+    return redirect('barors:edit-baror', pk=baror_id)
 
 
 @allowed_users(allowed_roles=['Baror'])
 def start_baror_page(request, pk):
     # Get baror
     baror = BarOr.objects.get(id=pk)
-    barorscores = BarorScore.objects.all().filter(baror_round=pk).order_by('float_score')
+    barorscores = BarorScore.objects.all().filter(
+        baror_round=pk).order_by('float_score')
     if request.method == 'POST':
         # add baror start date and update status
         baror.set_start_time()
         # update soldiers' status
         for score in barorscores:
             score.update_soldier_status_to_running()
-    return render(request, 'baror_round.html', {'baror':baror, 'barorscores':barorscores})
+    return render(request, 'baror_round.html', {'baror': baror, 'barorscores': barorscores})
 
 
 @allowed_users(allowed_roles=['Baror'])
-def manage_running_round(request,pk):
+def manage_running_round(request, pk):
     # Get data
     if request.method == 'POST':
         soldier_id = request.POST.get('soldier_id')
         barorscore = BarorScore.objects.get(baror_round=pk, soldier=soldier_id)
         barorscore.update_score()
-        
+
         # check if baror has been finished
         barorscores = BarorScore.objects.all().filter(baror_round=pk, float_score=None)
         if not barorscores:
@@ -94,10 +95,6 @@ def manage_running_round(request,pk):
             baror.set_stop_time()
             return redirect('barors:all-barors')
     return redirect('barors:start-baror', pk=pk)
-
-
-
-
 
 
 ###########################################################################
@@ -115,4 +112,3 @@ def manage_running_round(request,pk):
 #         messages.error(request, f'ERROR! {str(ex)}')
 
 #     return HttpResponse(f'delete baror')
-

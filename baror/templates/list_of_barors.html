@@ -1,7 +1,136 @@
-{% extends "base.html" %}
+{% extends "home_baror.html" %}
+{% block baror-main %}
+{% load static %}
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4"><a href="{% url 'barors:add-baror' %}"
+            class="d-inline-block btn btn-primary shadow-sm"><svg xmlns="{% static 'icons/plus-lg.svg'%}" width="16"
+                height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+            </svg> Add Round</a></div>
+
+    <!-- Content Row -->
+    <!-- <div class="row"> -->
+
+    <!-- Earnins (Monthly) Card -->
+    <!-- <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text font-weight-bold text-success text-uppercase mb-1">
+                                After Shalishut</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{soldiers.after.count}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    <!-- Pending Requests Card -->
+    <!-- <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-1">
+                            <div class="text font-weight-bold text-warning text-uppercase mb-1">
+                                Waiting List</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{soldiers.before.count}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- DataTales -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">List of Barors</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Round</th>
+                            <th scope="col">Baror Status</th>
+                            <th scope="col">Soldiers In Round</th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th scope="col">Round</th>
+                            <th scope="col">Baror Status</th>
+                            <th scope="col">Soldiers In Round</th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for baror in barors %}
+                        <tr>
+                            <td>{{ baror.baror_round }}</td>
+                            <td>{{ baror.baror_status }}</td>
+                            <td>
+                                {% with barorscoers=baror.barorscore_set.all %}
+
+                                {% if barorscoers %}
+                                {% for barorscore in barorscoers %}
+                                <span>{{barorscore.soldier.idf_num}}</span>
+                                {% if forloop.last is False%}
+                                <span>,</span>
+                                {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                <span>None</span>
+
+                                {% endif %}
+                                {% endwith %}
+                            </td>
+                            <td>
+                                {% if baror.baror_status == "Waiting for allocate" %}
+                                <a href="{% url 'barors:edit-baror' baror.id %}"><button
+                                        class="btn btn-sm btn-light">Edit</button></a>
+                                {% elif baror.baror_status == "Ready"%}
+                                <a href="{% url 'barors:edit-baror' baror.id %}"><button
+                                        class="btn btn-sm btn-light">Edit</button></a>
+                                <a href="{% url 'barors:start-baror' baror.id %}"><button
+                                        class="btn btn-sm btn-success">Let's
+                                        go!</button></a>
+                                {% elif baror.baror_status == "Running"%}
+                                <button class="btn btn-sm btn-light" disabled>Edit</button>
+                                <a href="{% url 'barors:start-baror' baror.id %}"><button
+                                        class="btn btn-sm btn-success">open</button></a>
+                                {% elif baror.baror_status == "Done"%}
+                                <button class="btn btn-sm btn-light" disabled>Edit</button>
+                                <a href="{% url 'barors:start-baror' baror.id %}"><button
+                                        class="btn btn-sm btn-secondary">View</button></a>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+
 {% block content %}
 
-<!-- <h2 class="">List of soldiers</h2> -->
 <div class="container">
     <table class="table table caption-top">
         <caption style="text-align: center">
@@ -24,14 +153,14 @@
                 <td>{{ baror.baror_status }}</td>
                 <td>
                     {% with barorscoers=baror.barorscore_set.all %}
-                    
+
                     {% if barorscoers %}
-                        {% for barorscore in barorscoers %}
-                        <span>{{barorscore.soldier.idf_num}}</span>
-                            {% if forloop.last is False%}
-                                <span>,</span>
-                            {% endif %}
-                        {% endfor %}
+                    {% for barorscore in barorscoers %}
+                    <span>{{barorscore.soldier.idf_num}}</span>
+                    {% if forloop.last is False%}
+                    <span>,</span>
+                    {% endif %}
+                    {% endfor %}
                     {% else %}
                     <span>None</span>
 
@@ -40,16 +169,21 @@
                 </td>
                 <td>
                     {% if baror.baror_status == "Waiting for allocate" %}
-                    <a href="{% url 'barors:edit-baror' baror.id %}"><button class="btn btn-sm btn-light">Edit</button></a>
+                    <a href="{% url 'barors:edit-baror' baror.id %}"><button
+                            class="btn btn-sm btn-light">Edit</button></a>
                     {% elif baror.baror_status == "Ready"%}
-                    <a href="{% url 'barors:edit-baror' baror.id %}"><button class="btn btn-sm btn-light">Edit</button></a>
-                    <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-success">Let's go!</button></a>
+                    <a href="{% url 'barors:edit-baror' baror.id %}"><button
+                            class="btn btn-sm btn-light">Edit</button></a>
+                    <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-success">Let's
+                            go!</button></a>
                     {% elif baror.baror_status == "Running"%}
                     <button class="btn btn-sm btn-light" disabled>Edit</button>
-                    <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-success">open</button></a>
+                    <a href="{% url 'barors:start-baror' baror.id %}"><button
+                            class="btn btn-sm btn-success">open</button></a>
                     {% elif baror.baror_status == "Done"%}
                     <button class="btn btn-sm btn-light" disabled>Edit</button>
-                    <a href="{% url 'barors:start-baror' baror.id %}"><button class="btn btn-sm btn-secondary">View</button></a>
+                    <a href="{% url 'barors:start-baror' baror.id %}"><button
+                            class="btn btn-sm btn-secondary">View</button></a>
                     {% endif %}
                 </td>
 
