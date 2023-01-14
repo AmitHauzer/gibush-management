@@ -60,24 +60,24 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="text-gray-800">
                         <tr>
-                            <th scope="col">IDF Number</th>
-                            <th scope="col">Soldier Status</th>
-                            <th scope="col"> </th>
+                            <th>IDF Number</th>
+                            <th>Soldier Status</th>
+                            <th> </th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    <tfoot class="text-gray-800">
                         <tr>
-                            <th scope="col">IDF Number</th>
-                            <th scope="col">Soldier Status</th>
-                            <th scope="col"> </th>
+                            <th>IDF Number</th>
+                            <th>Soldier Status</th>
+                            <th> </th>
                         </tr>
                     </tfoot>
                     <tbody>
                         {% for soldier in soldiers.before %}
                         <tr>
-                            <th scope="row">{{ soldier.idf_num }}</th>
+                            <th>{{ soldier.idf_num }}</th>
                             <td>{{ soldier.soldier_status }}</td>
                             <td><a href="{% url 'shalishut:update-soldier-shalishut' soldier.id %}"> <button
                                         type="button" class="btn btn-outline-info"><svg
@@ -105,37 +105,37 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="text-gray-800">
                         <tr>
-                            <th scope="col">IDF Number</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">City</th>
-                            <th scope="col">Profile</th>
-                            <th scope="col"> </th>
+                            <th>IDF Number</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>ID</th>
+                            <th>City</th>
+                            <th>Profile</th>
+                            <th> </th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    <tfoot class="text-gray-800">
                         <tr>
-                            <th scope="col">IDF Number</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">City</th>
-                            <th scope="col">Profile</th>
-                            <th scope="col"> </th>
+                            <th>IDF Number</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>ID</th>
+                            <th>City</th>
+                            <th>Profile</th>
+                            <th> </th>
                         </tr>
                     </tfoot>
                     <tbody>
                         {% for soldier in soldiers.after %}
                         <tr>
-                            <th scope="row">{{ soldier.idf_num }}</th>
+                            <th>{{ soldier.idf_num }}</th>
                             <td>{{ soldier.shalishut.firstname }} {{ soldier.shalishut.lastname }}</td>
                             <td>{{ soldier.soldier_status }}</td>
-                            <td scope="col">{{ soldier.shalishut.identity_num }}</td>
-                            <td scope="col">{{ soldier.shalishut.city }}</td>
-                            <td scope="col">{{ soldier.shalishut.profile }}</td>
+                            <td>{{ soldier.shalishut.identity_num }}</td>
+                            <td>{{ soldier.shalishut.city }}</td>
+                            <td>{{ soldier.shalishut.profile }}</td>
                             <td><a href="{% url 'shalishut:update-soldier-shalishut-admin' soldier.id %}">
                                     <button type="button" class="btn btn-outline-info"><svg
                                             xmlns="{% static 'icons/edit.svg' %}" width="16" height="16"

@@ -15,7 +15,7 @@
                 <div class="continer">
                     <div class="card-body">
                         <div class="form-group">
-                            <p>Edit the soldier's personal details. (only ShalishutAdmin)</p> <br>
+                            <div>Edit the soldier's personal details. (only ShalishutAdmin)</div> <br>
                             <form method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="hidden" id="soldier_pk" name="soldier_pk" value="{{soldier.id}}">
@@ -46,13 +46,10 @@
                                     class="btn btn-outline-secondary float-start">Back</button></a>
                         </div>
                         <br>
-
                     </div>
-                    <br>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

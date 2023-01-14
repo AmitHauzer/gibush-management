@@ -57,30 +57,30 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="text-gray-800">
                         <tr>
-                            <th scope="col">IDF Number</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Soldier Status</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Profile</th>
-                            <th scope="col"> </th>
+                            <th>IDF Number</th>
+                            <th>Name</th>
+                            <th>Soldier Status</th>
+                            <th>ID</th>
+                            <th>Profile</th>
+                            <th> </th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    <tfoot class="text-gray-800">
                         <tr>
-                            <th scope="col">IDF Number</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Soldier Status</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Profile</th>
-                            <th scope="col"> </th>
+                            <th>IDF Number</th>
+                            <th>Name</th>
+                            <th>Soldier Status</th>
+                            <th>ID</th>
+                            <th>Profile</th>
+                            <th> </th>
                         </tr>
                     </tfoot>
                     <tbody>
                         {% for soldier in soldiers.before %}
                         <tr>
-                            <th scope="row">{{ soldier.idf_num }}</th>
+                            <th>{{ soldier.idf_num }}</th>
                             <td>{{ soldier.shalishut.firstname }} {{ soldier.shalishut.lastname }}</td>
                             <td>{{ soldier.soldier_status }}</td>
                             <td>{{soldier.shalishut.identity_num}}</td>
@@ -111,41 +111,40 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="text-gray-800">
                         <tr>
-                            <th scope="col">IDF Number</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">file</th>
-                            <!-- <th scope="col"> </th> -->
+                            <th>IDF Number</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>ID</th>
+                            <th>file</th>
+                            <!-- <th> </th> -->
                         </tr>
                     </thead>
-                    <tfoot>
+                    <tfoot class="text-gray-800">
                         <tr>
-                            <th scope="col">IDF Number</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">file</th>
-                            <!-- <th scope="col"> </th> -->
+                            <th>IDF Number</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>ID</th>
+                            <th>file</th>
+                            <!-- <th> </th> -->
                         </tr>
                     </tfoot>
                     <tbody>
                         {% for soldier in soldiers.after %}
                         <tr>
-                            <th scope="row">{{ soldier.idf_num }}</th>
+                            <th>{{ soldier.idf_num }}</th>
                             <td>{{ soldier.shalishut.firstname }} {{ soldier.shalishut.lastname }}</td>
                             <td>{{ soldier.soldier_status }}</td>
-                            <td scope="col">{{ soldier.shalishut.identity_num }}</td>
+                            <td>{{ soldier.shalishut.identity_num }}</td>
                             {% if soldier.clinic.health_declaration %}
-                            <td scope="col"><a
-                                    href="{% get_static_prefix %}soldiers_docs/{{soldier.clinic.health_declaration}}"
+                            <td><a href="{% get_static_prefix %}soldiers_docs/{{soldier.clinic.health_declaration}}"
                                     target="_blank">
                                     <img src="{% static 'icons/filetype-pdf.svg' %}" alt="">
                                 </a></td>
                             {% else %}
-                            <td scope="col"></td>
+                            <td></td>
                             {% endif %}
 
                             <!-- <td>

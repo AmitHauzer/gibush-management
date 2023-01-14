@@ -15,7 +15,7 @@
                 <div class="continer">
                     <div class="card-body m-3">
                         <div class="form-group">
-                            <p>Please, enter the soldier <strong>gibush</strong> number.</p><br>
+                            <div>Please, enter the soldier <strong>gibush</strong> number.</div><br>
                             <form action="{% url 'shalishut:add-soldier-shalishut' %}" method="post">
                                 {% csrf_token %}
                                 <label for="idf_num">Idf Number: </label>
@@ -31,7 +31,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
