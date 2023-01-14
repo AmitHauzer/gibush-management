@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse
+from django.db.models import Q
+from soldiers.utils import tasks_by_percent
 from .models import BarOr, BarorScore
 from soldiers.models import Soldier
 from colorama import Fore
@@ -10,7 +12,20 @@ from user_management.decorators import allowed_users, login_required
 @login_required
 def list_of_barors(request):
     barors = BarOr.objects.all()
-    return render(request, 'list_of_barors.html', {'barors': barors})
+
+    # for details
+    soldiers_before = Soldier.objects.filter(
+        Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_BAROR) |
+        Q(soldier_status=Soldier.SoldierStatus.READY_TO_RUN))
+    soldiers_after = Soldier.objects.exclude(
+        Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_CLINIC) |
+        Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT) |
+        Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_BAROR) |
+        Q(soldier_status=Soldier.SoldierStatus.MEDICALLY_DISQUALIFIED) |
+        Q(soldier_status=Soldier.SoldierStatus.READY_TO_RUN))
+    percent = tasks_by_percent(after=soldiers_after, before=soldiers_before)
+
+    return render(request, 'list_of_barors.html', {'soldiers': {'before': soldiers_before, 'after': soldiers_after}, 'barors': barors, 'percent': percent})
 
 
 @allowed_users(allowed_roles=['Baror'])

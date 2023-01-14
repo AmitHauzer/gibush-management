@@ -81,8 +81,11 @@ def update_soldier_admin(request, pk):
 @login_required
 def search(request):
     search_req = request.GET.get('search')
-    soldiers = Soldier.objects.filter(Q(shalishut__firstname__istartswith=search_req) | Q(
-        shalishut__lastname__istartswith=search_req) | Q(idf_num__icontains=search_req) | Q(shalishut__identity_num__istartswith=search_req))
+    soldiers = Soldier.objects.filter(
+        Q(shalishut__firstname__istartswith=search_req) |
+        Q(shalishut__lastname__istartswith=search_req) |
+        Q(idf_num__icontains=search_req) |
+        Q(shalishut__identity_num__istartswith=search_req))
     soldiers_before = soldiers.filter(
         soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
     soldiers_after = soldiers.exclude(
