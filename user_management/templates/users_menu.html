@@ -1,4 +1,159 @@
-{% extends "base.html" %}
+{% extends "home_users.html" %}
+{% block users-main%}
+{% load static %}
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4"><a
+            href="{% url 'user_management:add-user-users' %}" class="d-inline-block btn btn-primary shadow-sm"><svg
+                xmlns="{% static 'icons/plus-lg.svg'%}" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+            </svg> Add User</a></div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnins (Monthly) Card -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text font-weight-bold text-success text-uppercase mb-1">
+                                Users</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{users.all.count}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text font-weight-bold text-danger text-uppercase mb-1">
+                                Inactive Users</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{users.inactive.count}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- DataTales -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Users List</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="text-gray-800">
+                        <tr>
+                            <th>Username</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Permissions</th>
+                            <th>Is active</th>
+                            <th>Is staff</th>
+                            <th>Is superuser</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot class="text-gray-800">
+                        <tr>
+                            <th>Username</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Permissions</th>
+                            <th>Is active</th>
+                            <th>Is staff</th>
+                            <th>Is superuser</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for user in users.all %}
+                        <tr>
+                            <th>{{ user.username }}</th>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>
+                                {% with groups=user.groups.all %}
+
+                                {% if groups %}
+                                {% for group in groups %}
+                                <span>{{group.name}}</span>
+                                {% if forloop.last is False%}
+                                <span>,</span>
+                                {% endif %}
+
+                                {% endfor %}
+                                {% else %}
+                                <span></span>
+
+                                {% endif %}
+                                {% endwith %}
+                            </td>
+
+                            {% if user.is_active %}
+                            <td>
+                                <img src="{% static 'icons/V-lg.svg' %}" alt="">
+                            </td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
+
+                            {% if user.is_staff %}
+                            <td>
+                                <img src="{% static 'icons/V-lg.svg' %}" alt="">
+                            </td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
+
+                            {% if user.is_superuser %}
+                            <td>
+                                <img src="{% static 'icons/V-lg.svg' %}" alt="">
+                            </td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
+
+                            <td><a href="{% url 'user_management:edit-user-users' user.id %}"><button type="button"
+                                        class="btn btn-outline-info"><svg xmlns="{% static 'icons/edit.svg' %}"
+                                            width="16" height="16" fill="currentColor" class="bi bi-pencil-square"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                                            </path>
+                                            <path fill-rule="evenodd"
+                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
+                                            </path>
+                                        </svg></button></a></td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
 {% block content %}
 {% load static %}
 <div class="container">
@@ -19,7 +174,7 @@
     <div class="container">
         <table class="table  caption-top">
             <caption style="text-align: left">
-                <h3>Users List - {{users.active.count}}</h3>
+                <h3>Users List - {{users.all.count}}</h3>
             </caption>
             <thead>
                 <tr>
@@ -34,31 +189,31 @@
                 </tr>
             </thead>
             <tbody>
-                {% for user in users.active %}
+                {% for user in users.all %}
                 <tr>
-                    <th scope="row">{{ user.username }}</th>
+                    <th>{{ user.username }}</th>
                     <td>{{ user.first_name }}</td>
                     <td>{{ user.last_name }}</td>
                     <td>
                         {% with groups=user.groups.all %}
-                        
-                        {% if groups %}
-                            {% for group in groups %}
-                            <span>{{group.name}}</span>    
-                            {% if forloop.last is False%}
-                            <span>,</span>
-                            {% endif %}
 
-                            {% endfor %}
+                        {% if groups %}
+                        {% for group in groups %}
+                        <span>{{group.name}}</span>
+                        {% if forloop.last is False%}
+                        <span>,</span>
+                        {% endif %}
+
+                        {% endfor %}
                         {% else %}
                         <span></span>
 
                         {% endif %}
                         {% endwith %}
                     </td>
-                    
+
                     {% if user.is_active %}
-                    <td scope="col">
+                    <td>
                         <img src="{% static 'icons/V-lg.svg' %}" alt="">
                     </td>
                     {% else %}
@@ -66,7 +221,7 @@
                     {% endif %}
 
                     {% if user.is_staff %}
-                    <td scope="col">
+                    <td>
                         <img src="{% static 'icons/V-lg.svg' %}" alt="">
                     </td>
                     {% else %}
@@ -74,13 +229,13 @@
                     {% endif %}
 
                     {% if user.is_superuser %}
-                    <td scope="col">
+                    <td>
                         <img src="{% static 'icons/V-lg.svg' %}" alt="">
                     </td>
                     {% else %}
                     <td></td>
                     {% endif %}
-                    
+
                     <td><a href="{% url 'user_management:edit-user-users' user.id %}"><button
                                 class="btn btn-outline-info">Edit</button></a></td>
                 </tr>
@@ -114,17 +269,17 @@
                     <td>{{ user.last_name }}</td>
                     <td>
                         {% with groups=user.groups.all %}
-                        
+
                         {% if groups %}
-                            {% for group in groups %}
-                            <span>{{group.name}}</span>
-                                {% if forloop.last is False%}
-                                    <span>,</span>
-                                {% endif %}
-                            {% endfor %}
+                        {% for group in groups %}
+                        <span>{{group.name}}</span>
+                        {% if forloop.last is False%}
+                        <span>,</span>
+                        {% endif %}
+                        {% endfor %}
                         {% else %}
                         <span></span>
-    
+
                         {% endif %}
                         {% endwith %}
                     </td>
