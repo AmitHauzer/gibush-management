@@ -3,16 +3,18 @@ from soldiers.models import Soldier
 from shalishut.models import Shalishut
 from django.contrib import messages
 from django.db.models import Q
+from soldiers.utils import tasks_by_percent
 from user_management.decorators import allowed_users, login_required
 
 
 @login_required
 def menu(request):
-    soldiers_befor = Soldier.objects.filter(
+    soldiers_before = Soldier.objects.filter(
         soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
     soldiers_after = Soldier.objects.exclude(
         soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
-    return render(request, 'shalishut_menu.html', {'soldiers': {'before': soldiers_befor, 'after': soldiers_after}, 'search_url': 'shalishut:search-shalishut'})
+    percent = tasks_by_percent(after=soldiers_after, before=soldiers_before)
+    return render(request, 'shalishut_menu.html', {'soldiers': {'before': soldiers_before, 'after': soldiers_after}, 'search_url': 'shalishut:search-shalishut', 'percent': percent})
 
 
 @allowed_users(allowed_roles=['Shalishut'])
@@ -81,8 +83,8 @@ def search(request):
     search_req = request.GET.get('search')
     soldiers = Soldier.objects.filter(Q(shalishut__firstname__istartswith=search_req) | Q(
         shalishut__lastname__istartswith=search_req) | Q(idf_num__icontains=search_req) | Q(shalishut__identity_num__istartswith=search_req))
-    soldiers_befor = soldiers.filter(
+    soldiers_before = soldiers.filter(
         soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
     soldiers_after = soldiers.exclude(
         soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
-    return render(request, 'shalishut_menu.html', {'soldiers': {'before': soldiers_befor, 'after': soldiers_after}, 'search_url': 'shalishut:search-shalishut'})
+    return render(request, 'shalishut_menu.html', {'soldiers': {'before': soldiers_before, 'after': soldiers_after}, 'search_url': 'shalishut:search-shalishut'})
