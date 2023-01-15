@@ -117,7 +117,7 @@ def search(request):
     return render(request, 'users_menu.html', {'users': {'all': all_users, 'inactive': inactive_users}, 'search_url': 'user_management:search-users'})
 
 
-@login_required
+# @login_required       # this is in comment for the welcome page
 def home_page(request):
     status = {}
     for s in Soldier.SoldierStatus:

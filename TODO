@@ -70,9 +70,13 @@ add gibush model:
 
 
 New UI:
-    - Login
     - side bar:
-        - add departments
+        - add departments                       - DONE
     - top bar:
-        - remove search?
+        - remove search                         - DONE
+    - Login                                     - DONE
+    - Logout                                    - DONE
+    - Welcome page(home)
+    - Charts
+    
         
