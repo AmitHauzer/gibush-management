@@ -1,4 +1,113 @@
-{% extends "base.html" %}
+{% extends "home_users.html" %}
+{% block users-main %}
+<div class="container-fluid">
+
+    <div style="margin: auto;" class="col-lg-10">
+        <!-- Collapsable Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <div class="d-block card-header py-3">
+                <h3 class="m-0 font-weight-bold text-primary">Edit User</h3>
+            </div>
+
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCardExample">
+                <div class="continer">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div>Select the user permissions.</div> <br>
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <table>
+                                    <tr>
+                                        <th>
+                                            <label for="id_username">Username:</label>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="username" maxlength="150" autocapitalize="none"
+                                                autocomplete="username" id="id_username" value="{{user_edit.username}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label for="id_first_name">First name:</label>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="first_name" maxlength="150" id="id_first_name"
+                                                value="{{user_edit.first_name}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label for="id_last_name">Last name:</label>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="last_name" maxlength="150" id="id_last_name"
+                                                value="{{user_edit.last_name}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label for="id_email">Email address:</label>
+                                        </th>
+                                        <td>
+                                            <input type="email" name="email" maxlength="254" id="id_email"
+                                                value="{{user_edit.email}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label for="id_is_active">Active:</label>
+                                        </th>
+                                        <td>
+                                            {% if user_edit.is_active %}
+                                            <input type="checkbox" name="is_active" checked>
+                                            {% else %}
+                                            <input type="checkbox" name="is_active">
+                                            {% endif%}
+                                            <br>
+                                            <span class="helptext">Designates whether this user should be treated as
+                                                active.
+                                                Unselect
+                                                this instead of deleting accounts.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <label for="id_groups">Groups:</label>
+                                        </th>
+                                        <td>
+                                            <fieldset>
+                                                {% for group in groups %}
+                                                {% if group in user_edit.groups.all %}
+                                                <input type="checkbox" name="groups" value="{{group.id}}" checked>
+                                                {{group.name}}</input></br>
+                                                {% else %}
+                                                <input type="checkbox" name="groups" value="{{group.id}}">
+                                                {{group.name}}</input></br>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </fieldset>
+                                            <span class="helptext">The groups this user belongs to. A user will get all
+                                                permissions
+                                                granted to each of their groups.</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </br>
+                                <input class="btn btn-success float-end" type="submit" value="Set">
+                            </form><a href="{% url 'user_management:menu-users' %}"><button
+                                    class="btn btn-outline-secondary float-start mb-4 ">Back</button></a>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="container">
 
@@ -43,7 +152,8 @@
                                 <label for="id_email">Email address:</label>
                             </th>
                             <td>
-                                <input type="email" name="email" maxlength="254" id="id_email" value="{{user_edit.email}}">
+                                <input type="email" name="email" maxlength="254" id="id_email"
+                                    value="{{user_edit.email}}">
                             </td>
                         </tr>
                         <tr>
@@ -70,9 +180,11 @@
                                 <fieldset>
                                     {% for group in groups %}
                                     {% if group in user_edit.groups.all %}
-                                    <input type="checkbox" name="groups" value="{{group.id}}" checked> {{group.name}}</input></br>
+                                    <input type="checkbox" name="groups" value="{{group.id}}" checked>
+                                    {{group.name}}</input></br>
                                     {% else %}
-                                    <input type="checkbox" name="groups" value="{{group.id}}"> {{group.name}}</input></br>
+                                    <input type="checkbox" name="groups" value="{{group.id}}">
+                                    {{group.name}}</input></br>
                                     {% endif %}
                                     {% endfor %}
                                 </fieldset>

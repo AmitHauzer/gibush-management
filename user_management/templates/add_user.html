@@ -1,4 +1,51 @@
-{% extends "base.html" %}
+{% extends "home_users.html" %}
+{% block users-main %}
+<div class="container-fluid">
+
+    <div style="margin: auto;" class="col-lg-6">
+        <!-- Collapsable Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <div class="d-block card-header py-3">
+                <h3 class="m-0 font-weight-bold text-primary">Add User</h3>
+            </div>
+
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCardExample">
+                <div class="continer">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <form class="form-control-lg" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <table>
+                                    <tr>
+                                        <td>{{ form.username.label_tag }}</td>
+                                        <td>{{ form.username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ form.password1.label_tag }}</td>
+                                        <td>{{ form.password1 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ form.password2.label_tag }}</td>
+                                        <td>{{ form.password2 }}</td>
+                                    </tr>
+                                </table>
+                                </br>
+                                <input class="btn btn-success float-end" type="submit" value="Add">
+                            </form>
+                        </div>
+                        <a href="{% url 'user_management:menu-users' %}"><button
+                                class="btn btn-outline-secondary float-start mb-4 ">Back</button></a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="container">
 
@@ -22,7 +69,7 @@
                             <td>{{ form.password2.label_tag }}</td>
                             <td>{{ form.password2 }}</td>
                         </tr>
-                        
+
                     </table>
                     </br>
                     <input class="btn btn-success float-end" type="submit" value="Add">

@@ -16,7 +16,6 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 def menu(request):
     all_users = User.objects.all()
     inactive_users = User.objects.exclude(is_active=True)
-
     return render(request, 'users_menu.html', {'users': {'all': all_users, 'inactive': inactive_users}, 'search_url': 'user_management:search-users'})
 
 
@@ -126,9 +125,8 @@ def home_page(request):
         status[key] = Soldier.objects.filter(soldier_status=s)
     return render(request, 'home.html', {'status': status})
 
+
 # to get path 'home/'
-
-
 def edit_home_path(request):
     return redirect('home-page')
 
