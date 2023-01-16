@@ -4,11 +4,13 @@
 <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4"><a href="{% url 'barors:add-baror' %}"
-            class="d-inline-block btn btn-primary shadow-sm"><svg xmlns="{% static 'icons/plus-lg.svg'%}" width="16"
-                height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+            data-toggle="modal" data-target="#addBarorModal" class="d-inline-block btn btn-primary shadow-sm"><svg
+                xmlns="{% static 'icons/plus-lg.svg'%}" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
+                viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                     d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-            </svg> Add Round</a></div>
+            </svg> Add Round</a>
+    </div>
 
 
     <div class="row">
@@ -154,6 +156,26 @@
         </div>
     </div>
 
+</div>
+
+<!-- Add Baror Modal-->
+<div class="modal fade" id="addBarorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Please, check if there isn't a baror with status 'Waiting for allocate'.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="{% url 'barors:add-baror' %}">Add</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
