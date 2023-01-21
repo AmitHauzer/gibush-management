@@ -54,6 +54,11 @@
     - This page shows all the statuses and where the soldiers are now.
 -	**Acceptance criteria.**
     - Select a number ---> Set.
+-	**User Management**
+    - Add users.
+    - Edit users.
+    - Active/Inactive users.
+    - Permissions.
 
 ## Models:
 - **Soldier**
