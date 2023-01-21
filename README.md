@@ -36,11 +36,13 @@
   - IDF is the “username” of the soldier.
 - **Update the soldier details**
 	- Once you update, the soldier’s status changes to ‘Waiting for Clinic’.
+
 ## Clinic:
 -	**Update:**
     - Unfit ---> File not required ---> The soldier stops the process, the status changes to ‘Medically disqualified'.
     - Fit ---> File not required ---> Continue, the status changes to 'Waiting for Baror'.
     - You can open the PDF.
+
 ## Baror:
 -	**Add a round.**
 -	**Edit round.** 
@@ -49,16 +51,19 @@
     - Start
     - Press ‘Done’ when the soldier finishes the round.
     - You can view the round. 
+
 ## Commander:
 -	**Chart & Tables.**
     - This page shows all the statuses and where the soldiers are now.
 -	**Acceptance criteria.**
     - Select a number ---> Set.
--	**User Management**
-    - Add users.
-    - Edit users.
-    - Active/Inactive users.
-    - Permissions.
+-	**An access to user management.**
+
+## User Management:
+- **Add users**.
+- **Edit users**.
+- **Active/Inactive users**.
+- **Permissions**.
 
 ## Models:
 - **Soldier**
