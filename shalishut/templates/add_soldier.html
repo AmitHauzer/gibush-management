@@ -34,31 +34,3 @@
 </div>
 
 {% endblock%}
-
-{% block content %}
-<div class="container">
-
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
-        <div style="margin: auto;" class="col">
-            <div class="card shadow-sm">
-                <div class="continer">
-                    <div class="form-group">
-                        <h3 style="text-align:center;">Add soldier</h3>
-                        <form action="{% url 'shalishut:add-soldier-shalishut' %}" class="form-control form-control-lg"
-                            method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <label for="idf_num">Idf Number:</label><br>
-                            <input type="number" id="idf_num" min="1" max="500" name="idf_num" required><br>
-                            <input class="btn btn-success" type="submit" value="Add">
-                        </form>
-                    </div>
-                    <a href="{% url 'shalishut:menu-shalishut' %}"><button
-                            class="btn btn-outline-secondary float-end">Back</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-{% endblock %}
