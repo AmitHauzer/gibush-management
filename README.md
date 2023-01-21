@@ -57,7 +57,7 @@
     - This page shows all the statuses and where the soldiers are now.
 -	**Acceptance criteria.**
     - Select a number ---> Set.
--	**An access to user management.**
+-	**Access to user management.**
 
 ## User Management:
 - **Add users**.
