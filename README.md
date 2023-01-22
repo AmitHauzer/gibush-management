@@ -44,8 +44,8 @@
     - You can open the PDF.
 
 ## Baror:
--	**Add a round.**
--	**Edit round:** 
+-	**Add rounds.**
+-	**Edit rounds:** 
     - Add soldiers ---> Finish.
 -	**Let’s go!:**
     - Start.
