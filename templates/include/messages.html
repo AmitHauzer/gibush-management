@@ -1,22 +1,22 @@
 {% if messages %}
 {% load static %}
-    {% for message in messages %}
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
-        <div class="alert alert-primary">
-          <img class="bi flex-shrink-0 me-2" src="{% static 'icons/messages_icons/info.svg' %}" alt="">{{ message }}
-        </div>
-        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-        <div class="alert alert-success">
-          <img class="bi flex-shrink-0 me-2" src="{% static 'icons/messages_icons/success.svg' %}" alt="">{{ message }}
-        </div>
-        {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-        <div class="alert alert-warning ">
-          <img class="bi flex-shrink-0 me-2" src="{% static 'icons/messages_icons/error.svg' %}" alt="">{{ message }}
-        </div>
-        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-        <div class="alert alert-danger">
-          <img class="bi flex-shrink-0 me-2" src="{% static 'icons/messages_icons/error.svg' %}" alt="">{{ message }}
-        </div>
-        {% endif %}
-    {% endfor %}
+{% for message in messages %}
+{% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+<div class="alert alert-primary">
+  <img class="bi flex-shrink-0 me-2" src="{% static 'icons/messages_icons/info.svg' %}" alt="">{{ message }}
+</div>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<div class="alert alert-success">
+  <img class="bi flex-shrink-0 me-2" src="{% static 'icons/messages_icons/success.svg' %}" alt="">{{ message }}
+</div>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+<div class="alert alert-warning ">
+  <img class="bi flex-shrink-0 me-2" src="{% static 'icons/messages_icons/error.svg' %}" alt="">{{ message }}
+</div>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<div class="alert alert-danger">
+  <img class="bi flex-shrink-0 me-2" src="{% static 'icons/messages_icons/error.svg' %}" alt="">{{ message }}
+</div>
+{% endif %}
+{% endfor %}
 {% endif %}

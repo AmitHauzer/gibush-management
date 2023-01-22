@@ -1,28 +1,36 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container">
+{% extends "home_shalishut.html" %}
+{% block shalishut-main %}
+<div class="container-fluid">
 
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
-        <div style="margin: auto;" class="col">
-            <div class="card shadow-sm">
+    <div style="margin: auto;" class="col-lg-6">
+        <!-- Collapsable Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <div class="d-block card-header py-3">
+                <h3 class="m-0 font-weight-bold text-primary">Add Soldier</h3>
+            </div>
+
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCardExample">
                 <div class="continer">
-                    <div class="form-group">
-                        <h3 style="text-align:center;">Add soldier</h3>
-                        <form action="{% url 'shalishut:add-soldier-shalishut' %}" class="form-control form-control-lg"
-                            method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <label for="idf_num">Idf Number:</label><br>
-                            <input type="number" id="idf_num" min="1" max="500" name="idf_num" required><br>
-                            <input class="btn btn-success" type="submit" value="Add">
-                        </form>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div>Please, enter the soldier <strong>gibush</strong> number.</div><br>
+                            <form class="form-control-lg" action="{% url 'shalishut:add-soldier-shalishut' %}" method="post">
+                                {% csrf_token %}
+                                <label for="idf_num">Idf Number: </label>
+                                <input type="number" id="idf_num" min="1" max="500" name="idf_num" required><br><br>
+                                <input class="btn btn-success float-end" type="submit" value="Add">
+                            </form>
+                            <a href="{% url 'shalishut:menu-shalishut' %}"><button
+                                    class="btn btn-outline-secondary float-start mb-4">Back</button></a>
+                        </div>
+                        <br>
                     </div>
-                    <a href="{% url 'shalishut:menu-shalishut' %}"><button
-                            class="btn btn-outline-secondary float-end">Back</button></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
-{% endblock %}
+
+{% endblock%}

@@ -10,7 +10,7 @@ Soldier model:
 
 Baror app:
     - status                                    - DONE
-    - menu
+    - menu                                      - DONE
     - user last update
 
 Barorscore model: 
@@ -67,3 +67,17 @@ add gibush model:
     - like baror
     - old true/false
     - filter object true
+
+
+New UI:
+    - side bar:
+        - add departments                       - DONE
+    - top bar:
+        - remove search                         - DONE
+    - Login                                     - DONE
+    - Logout                                    - DONE
+    - Charts                                    - DONE
+    - Welcome page(home)
+    
+    
+        
