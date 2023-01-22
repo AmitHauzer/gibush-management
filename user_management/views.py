@@ -1,16 +1,13 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
-
 from soldiers.models import Soldier
 from .decorators import allowed_users, login_required
 from django.contrib.auth.models import User, Group
 from django.db.models import Q
 from django.contrib import messages
-from django.http import HttpResponse
 
 
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, SetPasswordForm, AdminPasswordChangeForm
-
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 @allowed_users(allowed_roles=['Commander'])
 def menu(request):
@@ -39,6 +36,9 @@ def add_user(request):
 def edit_user(request, pk):
     user_edit = User.objects.get(id=pk)
     groups = Group.objects.all()
+    if user_edit.is_superuser:
+        messages.error(request, f"Sorry, only the admin can edit a superuser.")
+        return redirect("user_management:menu-users")
     if request.method == 'POST':
         username_edit = request.POST.get('username')
         firstname_edit = request.POST.get('first_name')
