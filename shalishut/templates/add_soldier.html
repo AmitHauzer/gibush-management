@@ -16,14 +16,14 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div>Please, enter the soldier <strong>gibush</strong> number.</div><br>
-                            <form action="{% url 'shalishut:add-soldier-shalishut' %}" method="post">
+                            <form class="form-control-lg" action="{% url 'shalishut:add-soldier-shalishut' %}" method="post">
                                 {% csrf_token %}
                                 <label for="idf_num">Idf Number: </label>
                                 <input type="number" id="idf_num" min="1" max="500" name="idf_num" required><br><br>
                                 <input class="btn btn-success float-end" type="submit" value="Add">
                             </form>
                             <a href="{% url 'shalishut:menu-shalishut' %}"><button
-                                    class="btn btn-outline-secondary float-start">Back</button></a>
+                                    class="btn btn-outline-secondary float-start mb-4">Back</button></a>
                         </div>
                         <br>
                     </div>

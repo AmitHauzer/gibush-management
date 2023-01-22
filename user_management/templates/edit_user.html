@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div>Select the user permissions.</div> <br>
-                            <form method="post" enctype="multipart/form-data">
+                            <form class="form-control-lg" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <table>
                                     <tr>
@@ -95,9 +95,9 @@
                                     </tr>
                                 </table>
                                 </br>
-                                <input class="btn btn-success float-end" type="submit" value="Set">
+                                <input class="btn btn-lg btn-success float-end" type="submit" value="Set">
                             </form><a href="{% url 'user_management:menu-users' %}"><button
-                                    class="btn btn-outline-secondary float-start mb-4 ">Back</button></a>
+                                    class="btn btn-lg btn-outline-secondary float-start mb-4 ">Back</button></a>
                         </div>
                     </div>
                     <br>

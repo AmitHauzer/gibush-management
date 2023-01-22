@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <div>Edit the soldier's personal details. (only ShalishutAdmin)</div> <br>
-                            <form method="post" enctype="multipart/form-data">
+                            <form class="form-control-lg" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="hidden" id="soldier_pk" name="soldier_pk" value="{{soldier.id}}">
                                 <label for="first_name">First name:</label><br>
@@ -43,7 +43,7 @@
                                 <input class="btn btn-success float-end" type="submit" value="Update">
                             </form>
                             <a href="{% url 'shalishut:menu-shalishut' %}"><button
-                                    class="btn btn-outline-secondary float-start">Back</button></a>
+                                    class="btn btn-outline-secondary float-start mb-4">Back</button></a>
                         </div>
                         <br>
                     </div>

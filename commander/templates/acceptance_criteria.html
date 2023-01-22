@@ -20,17 +20,17 @@
                                 the value is empty.</div>
                             {% include 'charts/chart_acceptance_criteria.html' %}
 
-                            <form class=" form-control-lg" method="post">
+                            <form class="form-control-lg" method="post">
                                 {% csrf_token %}
                                 <label class="fw-bold" for="limit">Select a number:</label><br>
                                 <input type="number" id="limit" name="limit" min="1" max="{{all_baror_score.count}}">
                                 <br><br>
-                                <input class="btn btn-success float-end" type="submit" value="Set">
+                                <input class="btn btn-lg btn-success float-end" type="submit" value="Set">
                             </form>
                         </div>
                         <br>
                         <a href="{% url 'commander:menu-commander' %}"><button
-                                class="btn btn-outline-secondary float-start mb-4 ">Back</button></a>
+                                class="btn btn-lg btn-outline-secondary float-start mb-4 ">Back</button></a>
                     </div>
                     <br>
                 </div>
