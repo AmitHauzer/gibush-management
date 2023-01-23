@@ -1,4 +1,6 @@
 # Gibush management
+Welcome to the K-9 unit Gibush site.
+Here you can find all you need to know about the candidates, their status and manage their process during the Gibush.
 # Installation Instructions
 1. **Git clone.**
 2. **Open vevn:**
