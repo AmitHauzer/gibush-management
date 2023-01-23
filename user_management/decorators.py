@@ -22,8 +22,8 @@ def user_passes_test(
             test_result = test_func(request.user)
             if test_result:
                 return view_func(request, *args, **kwargs)
-            # elif test_result == False:
-            #     messages.error(request,'Authentication Error: Login required')
+            elif test_result == False:
+                messages.warning(request,'Authentication Error: Login required')
             path = request.build_absolute_uri()
             resolved_login_url = resolve_url(login_url or settings.LOGIN_URL)
             # If the login url is the same scheme and net location then just
