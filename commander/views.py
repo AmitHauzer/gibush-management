@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from soldiers.models import Soldier
 from baror.models import BarorScore
 from user_management.decorators import allowed_users, login_required
 
 
-@login_required
+# @login_required
 def menu(request):
     # A dictionary which ordered by all the statuses
     status = {}

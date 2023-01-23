@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
 from soldiers.models import Soldier
 from clinic.models import Clinic
 from django.contrib import messages
@@ -8,7 +7,7 @@ from soldiers.utils import tasks_by_percent
 from user_management.decorators import allowed_users, login_required
 
 
-@login_required
+# @login_required
 def menu(request):
     soldiers_before = Soldier.objects.filter(
         soldier_status=Soldier.SoldierStatus.WAITING_FOR_CLINIC)
@@ -19,7 +18,7 @@ def menu(request):
     return render(request, 'clinic_menu.html', {'soldiers': {'before': soldiers_before, 'after': soldiers_after}, 'search_url': 'clinic:search-clinic', 'percent': percent})
 
 
-@ login_required
+# @ login_required
 def search(request):
     search_req = request.GET.get('search')
     soldiers = Soldier.objects.filter(

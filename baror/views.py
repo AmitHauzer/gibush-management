@@ -1,15 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse
 from django.db.models import Q
 from soldiers.utils import tasks_by_percent
 from .models import BarOr, BarorScore
 from soldiers.models import Soldier
-from colorama import Fore
 from user_management.decorators import allowed_users, login_required
 
 
-@login_required
+# @login_required
 def list_of_barors(request):
     barors = BarOr.objects.all()
 
@@ -111,19 +109,3 @@ def manage_running_round(request, pk):
             return redirect('barors:all-barors')
     return redirect('barors:start-baror', pk=pk)
 
-
-###########################################################################
-
-# def delete_baror(request, pk):
-#     # only admin
-#     # if not request.user.is_staff:
-#     #     return HttpResponse('YOU ARE Not allowed to delete books')
-#     try:
-#         baror = BarOr.objects.get(id=pk)
-#         baror_name = baror.baror_round
-#         messages.success(request, f'{baror_name} deleted!')
-#         return redirect('baror:all-barors')
-#     except Exception as ex:
-#         messages.error(request, f'ERROR! {str(ex)}')
-
-#     return HttpResponse(f'delete baror')

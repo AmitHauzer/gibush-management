@@ -7,7 +7,7 @@ from soldiers.utils import tasks_by_percent
 from user_management.decorators import allowed_users, login_required
 
 
-@login_required
+# @login_required
 def menu(request):
     soldiers_before = Soldier.objects.filter(
         soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT)
@@ -78,7 +78,7 @@ def update_soldier_admin(request, pk):
     return render(request, 'update_shalishut_soldier_admin.html', {'profiles': Shalishut.Profiletype, 'shalishut': shalishut})
 
 
-@login_required
+# @login_required
 def search(request):
     search_req = request.GET.get('search')
     soldiers = Soldier.objects.filter(

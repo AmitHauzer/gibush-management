@@ -105,7 +105,7 @@ def login_page(request):
     return render(request, 'login.html', {'form': form})
 
 
-@login_required
+# @login_required
 def search(request):
     search_req = request.GET.get('search')
     all_users = User.objects.filter(
