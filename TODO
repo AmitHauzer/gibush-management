@@ -50,14 +50,9 @@ User Managemnet:
     - permissions for clinic                    - DONE
     - permissions for baror                     - DONE
     
-    
-
-
-
 Search:
     - shalishut                                 - DONE
-    - clinic                                    - DONE
-    - baror (soldier or baror)                  
+    - clinic                                    - DONE                 
 
 time:
     - utc -> Israel timezone
@@ -67,7 +62,6 @@ add gibush model:
     - like baror
     - old true/false
     - filter object true
-
 
 New UI:
     - side bar:
