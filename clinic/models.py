@@ -34,5 +34,4 @@ class Clinic(models.Model):
 
 
     def __str__(self) -> str:
-        # return f' IDF: {self.soldier.idf_num}, Name: {self.soldier.shalishut.firstname} {self.soldier.shalishut.lastname}, ID: {self.identity_num}, Soldier Status: {self.soldier.soldier_status}, City: {self.city}'
         return f'IDF: {self.soldier.idf_num}'

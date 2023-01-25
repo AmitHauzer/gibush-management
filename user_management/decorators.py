@@ -69,10 +69,6 @@ def allowed_users(allowed_roles=[]):
             if request.user.groups.exists():
                 for group in request.user.groups.all():
                     groups.append(group.name)
-                # print("User's groups: ",groups)
-                # print("Allowed role:  ",allowed_roles)
-                # result = any(group in allowed_roles for group in groups)
-                # print("Allowed?       ",result)
             if any(group in allowed_roles for group in groups):
                 return view_func(request,*args,**kwargs)
             if request.user.is_staff:

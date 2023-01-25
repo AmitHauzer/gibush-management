@@ -14,13 +14,15 @@ def list_of_barors(request):
     # for details
     soldiers_before = Soldier.objects.filter(
         Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_BAROR) |
-        Q(soldier_status=Soldier.SoldierStatus.READY_TO_RUN))
+        Q(soldier_status=Soldier.SoldierStatus.READY_TO_RUN)
+        )
     soldiers_after = Soldier.objects.exclude(
         Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_CLINIC) |
         Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_SHALISHUT) |
         Q(soldier_status=Soldier.SoldierStatus.WAITING_FOR_BAROR) |
         Q(soldier_status=Soldier.SoldierStatus.MEDICALLY_DISQUALIFIED) |
-        Q(soldier_status=Soldier.SoldierStatus.READY_TO_RUN))
+        Q(soldier_status=Soldier.SoldierStatus.READY_TO_RUN)
+        )
     percent = tasks_by_percent(after=soldiers_after, before=soldiers_before)
 
     return render(request, 'list_of_barors.html', {'soldiers': {'before': soldiers_before, 'after': soldiers_after}, 'barors': barors, 'percent': percent})
@@ -64,8 +66,6 @@ def add_soldier_to_round(request):
     # Get params (POST)
     baror_id = request.POST.get('pk')
     soldier_id = request.POST.get('soldier_id')
-    print(f'Baror ID: {baror_id}')                          # not necessary
-    print(f'Soldier ID: {soldier_id}')                      # not necessary
     # Get Objects
     soldier = Soldier.objects.get(id=soldier_id)
     baror = BarOr.objects.get(id=baror_id)

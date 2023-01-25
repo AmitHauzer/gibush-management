@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 app_name = 'barors'
@@ -10,12 +10,4 @@ urlpatterns = [
     path('<pk>/barorReady/', views.baror_is_ready, name='baror-is-ready'),
     path('<pk>/manageround/', views.start_baror_page, name='start-baror'),
     path('<pk>/manageround/soldierendthebaror/', views.manage_running_round, name='manage-soldier-in-round'),
-    # path('<pk>/finish', views.baror_finish, name='finish-baror'),
 ]
-
-
-
-
-
-# Old:
-# path('createbaror/', views.create_baror, name='create-baror'),
