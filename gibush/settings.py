@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG=False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'gibush-management-demo.onrender.com']
 
@@ -137,7 +137,8 @@ MEDIA_ROOT = BASE_DIR / 'static/soldiers_docs'
 
 STATIC_ROOT =  BASE_DIR / 'staticfiles'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
