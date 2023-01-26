@@ -26,7 +26,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = 'RENDER' not in os.environ
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'https://gibush-management-demo.onrender.com/']
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'gibush-management-demo.onrender.com']
 
 LOGIN_URL = '/users/login/'
 
