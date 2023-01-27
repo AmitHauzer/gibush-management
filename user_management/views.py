@@ -34,9 +34,10 @@ def add_user(request):
 
 @allowed_users(allowed_roles=['Commander'])
 def edit_user(request, pk):
+    current_user = request.user
     user_edit = User.objects.get(id=pk)
     groups = Group.objects.all()
-    if user_edit.is_superuser:
+    if user_edit.is_superuser and not current_user.is_superuser:
         messages.error(request, f"Sorry, only the admin can edit a superuser.")
         return redirect("user_management:menu-users")
     if request.method == 'POST':
@@ -47,6 +48,17 @@ def edit_user(request, pk):
         is_active_edit = request.POST.get('is_active')
         groups_edit = request.POST.getlist('groups')
         try:
+            # Is active?
+            if current_user.username != user_edit.username:
+                if is_active_edit == 'on':
+                    user_edit.is_active = True
+                    messages.success(request, f"The user {user_edit.username} has been activated.")
+                else:
+                    user_edit.is_active = False
+                    messages.warning(request, f"The user {user_edit.username} has been deactivated.")
+            elif is_active_edit != 'on':
+                messages.error(request, f"You can't deactivate your account.")
+
             # Change username:
             if user_edit.username != username_edit:
                 user_edit.username = username_edit
@@ -64,12 +76,6 @@ def edit_user(request, pk):
                 user_edit.email = email_edit
             else:
                 user_edit.email = ''
-
-            # Is active?
-            if is_active_edit == 'on':
-                user_edit.is_active = True
-            else:
-                user_edit.is_active = False
 
             # Save
             user_edit.save()
